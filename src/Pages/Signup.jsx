@@ -19,7 +19,7 @@ const department_options = [
 ];
 
 function Signup() {
-  const [Name, setName] = useState("");
+  const [name, setName] = useState("");
   const [department, setDepartment] = useState(department_options[0]);
   const [github, setGithub] = useState("");
   const [linkedIn, setLinkedIn] = useState("");
@@ -31,11 +31,56 @@ function Signup() {
   // const [imageURL, setImageURL] = useState("");
   // const [per, setPerc] = useState(null);
   // const navigate = useNavigate();
-  //   const { dispatch } = useContext(AuthContext);
+  // const { dispatch } = useContext(AuthContext);
+  // const [errors, setErrors] = useState({});
 
+  // const validate = async () => {
+  //   if (!email) {
+  //     errors.email = "Email is required";
+  //   } else if (!/\S+@\S+\.\S+/.test(email)) {
+  //     errors.email = "Email is invalid";
+  //   }
+  //   if (!password) {
+  //     errors.password = "Password is required";
+  //   }
+  //   return errors;
+  // };
+
+  // handleSubmit function is incomplete
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+    // const validationErrors = await validate();
+    // if (Object.keys(validationErrors).length === 0) {
+    //   const userData = {
+    //     email: email,
+    //     password: password,
+          // ---------- ADD MORE FIELDS TO SAVE IN DATABASE--------------
+    //   };
+    //   try {
+    //     const res = await axios.post(
+    //       "https://book-store-backend-alpha.vercel.app/book_store/users/sign_in",
+    //       userData
+    //     );
+    //     if (res.data) {
+    //       toast.success("Login successful!");
+    //       localStorage.setItem("Users", JSON.stringify(res.data.user));
+    //       setInterval(() => {
+    //         window.location.reload();
+    //       }, 1000);
+    //     }
+    //   } catch (err) {
+    //     toast.error(err.response.data.message);
+    //     setInterval(() => {}, 2000);
+    //   }
+    //   setErrors({});
+    // } else {
+    //   setErrors(validationErrors);
+    // }
+  //   alert("Signup clicked");
+  // };
   return (
     <>
-      <div className="bg-white dark:bg-zinc-900">
+      <div className="bg-white dark:bg-gray-900">
         <div className="flex justify-center h-screen">
           <div className="flex items-center w-full max-w-md px-6 mx-auto lg:w-2/6">
             <div className="flex-1">

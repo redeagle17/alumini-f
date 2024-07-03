@@ -53,7 +53,7 @@ function Login() {
 
   return (
     <>
-      <div className="bg-white dark:bg-zinc-900">
+      <div className="bg-white dark:bg-gray-900">
         <div className="flex justify-center h-screen">
           <div className="hidden bg-cover lg:block lg:w-2/3 bg-[url(https://www.alumni.ox.ac.uk/sites/default/files/styles/listing_tile_text_displayed_image/public/alumni_group_network.png?itok=mdK0sHFb)] bg-white">
             <div className="flex items-center h-full px-20 bg-gray-900 bg-opacity-40">
