@@ -1,3 +1,5 @@
+@import "./Components/Dashboard/AlumniList.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
