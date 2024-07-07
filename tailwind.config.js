@@ -1,13 +1,18 @@
 /** @type {import('tailwindcss').Config} */
 const defaultTheme = require('tailwindcss/defaultTheme');
+const withMT = require("@material-tailwind/react/utils/withMT");
 module.exports = {
   content: [
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
     extend: {
-      
       colors: {
+        lightSecondary: '#A3AED0',
+        bluePrimary: '#2B3674',
+        shadow: {
+          500: 'rgba(112, 144, 176, 0.08)',
+        },
         red: {
           '50': '#ffebee',
           '100': '#ffcdd2',
@@ -326,4 +331,4 @@ module.exports = {
     backgroundColor: ['responsive', 'hover', 'focus', 'group-hover'],
   },
   plugins: [],
-}
+};
