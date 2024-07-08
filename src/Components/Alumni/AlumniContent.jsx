@@ -13,6 +13,7 @@ const data = [
     twitter: "https://twitter.com/_MaazKarim_",
     github: "https://github.com/Cyber-Machine",
     linkedin: "https://github.com/Cyber-Machine",
+    gender: "Male",
   },
   {
     id: 2,
@@ -25,6 +26,7 @@ const data = [
     twitter: "https://twitter.com/Aditya_Gupta_99",
     github: "https://github.com/Aditya-gupta99",
     linkedin: "https://github.com/Cyber-Machine",
+    gender: "Male",
   },
   {
     id: 3,
@@ -38,6 +40,7 @@ const data = [
     twitter: "https://twitter.com/Aditya_Gupta_99",
     github: "https://github.com/Aditya-gupta99",
     linkedin: "https://github.com/Cyber-Machine",
+    gender: "Male",
   },
   {
     id: 4,
@@ -51,6 +54,7 @@ const data = [
     twitter: "https://twitter.com/Aditya_Gupta_99",
     github: "https://github.com/Aditya-gupta99",
     linkedin: "https://github.com/Cyber-Machine",
+    gender: "Male",
   },
   {
     id: 5,
@@ -64,10 +68,11 @@ const data = [
     twitter: "https://twitter.com/Aditya_Gupta_99",
     github: "https://github.com/Aditya-gupta99",
     linkedin: "https://github.com/Cyber-Machine",
+    gender: "Male",
   },
   {
     id: 6,
-    name: "Krish Tiwary",
+    name: "Akanksha Singh",
     department: "ISE",
     domain: "Data Engineer",
     tagline:
@@ -77,10 +82,11 @@ const data = [
     twitter: "https://twitter.com/Aditya_Gupta_99",
     github: "https://github.com/Aditya-gupta99",
     linkedin: "https://github.com/Cyber-Machine",
+    gender: "Female",
   },
   {
     id: 7,
-    name: "Krish Tiwary",
+    name: "Ananya Singh Wattamwar",
     department: "ECE",
     domain: "Data Engineer",
     tagline:
@@ -90,6 +96,7 @@ const data = [
     twitter: "https://twitter.com/Aditya_Gupta_99",
     github: "https://github.com/Aditya-gupta99",
     linkedin: "https://github.com/Cyber-Machine",
+    gender: "Female",
   },
 ];
 
@@ -219,6 +226,7 @@ function AlumniContent() {
               id={a.id}
               name={a.name}
               department={a.department}
+              gender={a.gender}
               domain={a.domain}
               github={a.github}
               linkedin={a.linkedin}

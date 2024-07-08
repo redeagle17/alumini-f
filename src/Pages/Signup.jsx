@@ -22,6 +22,7 @@ function Signup() {
   const [name, setName] = useState("");
   const [department, setDepartment] = useState(department_options[0]);
   const [github, setGithub] = useState("");
+  const [gender, setGender] = useState("");
   const [linkedIn, setLinkedIn] = useState("");
   const [twitter, setTwitter] = useState("");
   const [email, setEmail] = useState("");
@@ -49,33 +50,33 @@ function Signup() {
   // handleSubmit function is incomplete
   // const handleSubmit = async (e) => {
   //   e.preventDefault();
-    // const validationErrors = await validate();
-    // if (Object.keys(validationErrors).length === 0) {
-    //   const userData = {
-    //     email: email,
-    //     password: password,
-          // ---------- ADD MORE FIELDS TO SAVE IN DATABASE--------------
-    //   };
-    //   try {
-    //     const res = await axios.post(
-    //       "https://book-store-backend-alpha.vercel.app/book_store/users/sign_in",
-    //       userData
-    //     );
-    //     if (res.data) {
-    //       toast.success("Login successful!");
-    //       localStorage.setItem("Users", JSON.stringify(res.data.user));
-    //       setInterval(() => {
-    //         window.location.reload();
-    //       }, 1000);
-    //     }
-    //   } catch (err) {
-    //     toast.error(err.response.data.message);
-    //     setInterval(() => {}, 2000);
-    //   }
-    //   setErrors({});
-    // } else {
-    //   setErrors(validationErrors);
-    // }
+  // const validationErrors = await validate();
+  // if (Object.keys(validationErrors).length === 0) {
+  //   const userData = {
+  //     email: email,
+  //     password: password,
+  // ---------- ADD MORE FIELDS TO SAVE IN DATABASE--------------
+  //   };
+  //   try {
+  //     const res = await axios.post(
+  //       "https://book-store-backend-alpha.vercel.app/book_store/users/sign_in",
+  //       userData
+  //     );
+  //     if (res.data) {
+  //       toast.success("Login successful!");
+  //       localStorage.setItem("Users", JSON.stringify(res.data.user));
+  //       setInterval(() => {
+  //         window.location.reload();
+  //       }, 1000);
+  //     }
+  //   } catch (err) {
+  //     toast.error(err.response.data.message);
+  //     setInterval(() => {}, 2000);
+  //   }
+  //   setErrors({});
+  // } else {
+  //   setErrors(validationErrors);
+  // }
   //   alert("Signup clicked");
   // };
   return (
@@ -92,24 +93,41 @@ function Signup() {
 
               <div className="mt-8">
                 <form>
-                  <div>
-                    <label
-                      htmlFor="name"
-                      className="block mb-2 text-sm text-gray-600 dark:text-gray-200"
-                    >
-                      Name
-                    </label>
-                    <input
-                      type="text"
-                      name="name"
-                      id="name"
-                      placeholder="Name"
-                      className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-zinc-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
-                      onChange={(e) => setName(e.target.value)}
-                      required
-                    />
+                  <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label
+                        htmlFor="name"
+                        className="block mb-2 text-sm text-gray-600 dark:text-gray-200"
+                      >
+                        Name
+                      </label>
+                      <input
+                        type="text"
+                        name="name"
+                        id="name"
+                        placeholder="Name"
+                        className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-zinc-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                        onChange={(e) => setName(e.target.value)}
+                        required
+                      />
+                    </div>
+                    <div>
+                      <label
+                        htmlFor="gender"
+                        className="block mb-2 text-sm text-gray-600 dark:text-gray-200"
+                      >
+                        Gender
+                      </label>
+                      <input
+                        type="text"
+                        name="gender"
+                        id="gender"
+                        placeholder="Gender"
+                        className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-zinc-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                        onChange={(e) => setGender(e.target.value)}
+                      />
+                    </div>
                   </div>
-
                   <div className="mt-6">
                     <label
                       htmlFor="email"
