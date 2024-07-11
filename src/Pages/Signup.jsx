@@ -19,12 +19,9 @@ const department_options = [
 ];
 
 function Signup() {
-  const [name, setName] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [department, setDepartment] = useState(department_options[0]);
-  const [github, setGithub] = useState("");
-  const [gender, setGender] = useState("");
-  const [linkedIn, setLinkedIn] = useState("");
-  const [twitter, setTwitter] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -90,44 +87,8 @@ function Signup() {
                   Create your Account
                 </h1>
               </div>
-
               <div className="mt-8">
                 <form>
-                  <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                      <label
-                        htmlFor="name"
-                        className="block mb-2 text-sm text-gray-600 dark:text-gray-200"
-                      >
-                        Name
-                      </label>
-                      <input
-                        type="text"
-                        name="name"
-                        id="name"
-                        placeholder="Name"
-                        className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-zinc-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
-                        onChange={(e) => setName(e.target.value)}
-                        required
-                      />
-                    </div>
-                    <div>
-                      <label
-                        htmlFor="gender"
-                        className="block mb-2 text-sm text-gray-600 dark:text-gray-200"
-                      >
-                        Gender
-                      </label>
-                      <input
-                        type="text"
-                        name="gender"
-                        id="gender"
-                        placeholder="Gender"
-                        className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-zinc-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
-                        onChange={(e) => setGender(e.target.value)}
-                      />
-                    </div>
-                  </div>
                   <div className="mt-6">
                     <label
                       htmlFor="email"
@@ -227,42 +188,6 @@ function Signup() {
                         id="photo"
                         className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-zinc-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                         onChange={(e) => setImage(e.target.files[0])}
-                      />
-                    </div>
-                  </div>
-
-                  <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                      <label
-                        htmlFor="linkedin"
-                        className="block mb-2 text-sm text-gray-600 dark:text-gray-200"
-                      >
-                        LinkedIn
-                      </label>
-                      <input
-                        type="text"
-                        name="linkedin"
-                        id="linkedin"
-                        placeholder="LinkedIn"
-                        className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-zinc-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
-                        onChange={(e) => setLinkedIn(e.target.value)}
-                      />
-                    </div>
-
-                    <div>
-                      <label
-                        htmlFor="github"
-                        className="block mb-2 text-sm text-gray-600 dark:text-gray-200"
-                      >
-                        Github
-                      </label>
-                      <input
-                        type="text"
-                        name="github"
-                        id="github"
-                        placeholder="Github"
-                        className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-zinc-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
-                        onChange={(e) => setGithub(e.target.value)}
                       />
                     </div>
                   </div>

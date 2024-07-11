@@ -4,6 +4,7 @@ import Dashboard from "./Pages/Dashboard";
 import AluminiPage from "./Pages/AluminiPage";
 import { Navigate, Route, Routes } from "react-router-dom";
 import AlumniInfo from "./Components/Alumni/AlumniInfo";
+import AlumniPersonelInfo from "./Pages/AlumniPersonelInfo";
 
 function App() {
   return (
@@ -11,7 +12,8 @@ function App() {
       <Route exact path="/" element={<Login />} />
       <Route exact path="/signUp" element={<Signup />} />
       <Route exact path="/alumni" element={<AluminiPage />} />
-      <Route exact path="/info/:username/:id" element={<AlumniInfo />} />
+      <Route exact path="/personal_info" element={<AlumniPersonelInfo />} />
+      <Route exact path="/profile/:username/:id" element={<AlumniInfo />} />
       <Route exact path="/dashboard" element={<Dashboard />} />
     </Routes>
   );
