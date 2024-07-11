@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 
-function AlumniPersonelInfo() {
+function AlumniPersonalInfo() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [location, setLocation] = useState("");
@@ -237,4 +237,4 @@ function AlumniPersonelInfo() {
   );
 }
 
-export default AlumniPersonelInfo;
+export default AlumniPersonalInfo;
