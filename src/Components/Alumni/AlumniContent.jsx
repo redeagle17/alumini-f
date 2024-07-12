@@ -127,8 +127,8 @@ function AlumniContent() {
           Our Alumni
         </h1>
 
-        <div className="w-full flex justify-evenly">
-          <div className="relative w-3/5 flex m-7">
+        <div className="w-full flex flex-col md:flex-row justify-evenly items-center md:items-start">
+          <div className="relative w-full md:w-3/5 flex m-7">
             <div className="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
               <svg
                 aria-hidden="true"
@@ -161,13 +161,12 @@ function AlumniContent() {
               Search
             </button>
           </div>
-          <div
-            className="flex"
-            onMouseEnter={() => setDropdown(!dropdown)}
-            onMouseLeave={() => setDropdown(!dropdown)}
-          >
-            <div className="dropdown inline-block relative m-7">
-              <button className="bg-blue-700 text-white font-semibold py-2 px-4 rounded inline-flex items-center hover:text-gray-900">
+          <div className="relative w-full md:w-auto m-7">
+            <div className="dropdown inline-block relative w-full md:w-auto">
+              <button
+                className="bg-blue-700 text-white font-semibold py-2 px-4 rounded inline-flex items-center hover:text-gray-900 w-50% md:w-auto"
+                onClick={() => setDropdown(!dropdown)}
+              >
                 <span className="mr-1">Department</span>
                 <svg
                   className="fill-current h-4 w-4"
@@ -178,42 +177,17 @@ function AlumniContent() {
                 </svg>
               </button>
               {dropdown && (
-                <ul className="dropdown-menu absolute text-gray-700 pt-1 z-10 w-full">
-                  <button
-                    className="rounded bg-gray-200 hover:bg-blue-700 hover:text-white font-bold py-2 px-4 block whitespace-no-wrap w-full"
-                    value="AIML"
-                    onClick={(e) => filterDataDropdown(e.target.value)}
-                  >
-                    AIML
-                  </button>
-                  <button
-                    className="rounded bg-gray-200 hover:bg-blue-700 hover:text-white font-bold py-2 px-4 block whitespace-no-wrap w-full"
-                    value="CSE"
-                    onClick={(e) => filterDataDropdown(e.target.value)}
-                  >
-                    CSE
-                  </button>
-                  <button
-                    className="rounded bg-gray-200 hover:bg-blue-700 hover:text-white font-bold py-2 px-4 block whitespace-no-wrap w-full"
-                    value="ISE"
-                    onClick={(e) => filterDataDropdown(e.target.value)}
-                  >
-                    ISE
-                  </button>
-                  <button
-                    className="rounded bg-gray-200 hover:bg-blue-700 hover:text-white font-bold py-2 px-4 block whitespace-no-wrap w-full"
-                    value="ECE"
-                    onClick={(e) => filterDataDropdown(e.target.value)}
-                  >
-                    ECE
-                  </button>
-                  <button
-                    className="rounded bg-gray-200 hover:bg-blue-700 hover:text-white font-bold py-2 px-4 block whitespace-no-wrap w-full"
-                    value="EEE"
-                    onClick={(e) => filterDataDropdown(e.target.value)}
-                  >
-                    EEE
-                  </button>
+                <ul className="dropdown-menu absolute text-gray-700 pt-1 z-10 w-50% md:w-full">
+                  {["AIML", "CSE", "ISE", "ECE", "EEE"].map((department) => (
+                    <button
+                      key={department}
+                      className="rounded bg-gray-200 hover:bg-blue-700 hover:text-white font-bold py-2 px-4 block whitespace-no-wrap w-full"
+                      value={department}
+                      onClick={(e) => filterDataDropdown(e.target.value)}
+                    >
+                      {department}
+                    </button>
+                  ))}
                 </ul>
               )}
             </div>

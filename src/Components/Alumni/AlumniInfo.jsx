@@ -126,11 +126,16 @@ function AlumniInfo() {
                       <div className="ml-1">
                         <p className="font-semibold">{github_data["name"]}</p>
                         <p className="text-gray-500 text-sm">
-                          {github_data["description"] ? github_data["description"] : "Not Available"}
+                          {github_data["description"]
+                            ? github_data["description"]
+                            : "Not Available"}
                         </p>
                       </div>
                     </div>
-                    <a href={github_data["html_url"]} className="text-blue-500 mr-1">
+                    <a
+                      href={github_data["html_url"]}
+                      className="text-blue-500 mr-1"
+                    >
                       Link
                     </a>
                   </div>

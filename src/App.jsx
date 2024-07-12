@@ -9,12 +9,12 @@ import AlumniPersonalInfo from "./Pages/AlumniPersonalInfo";
 function App() {
   return (
     <Routes>
-      <Route exact path="/" element={<Login />} />
       <Route exact path="/signUp" element={<Signup />} />
+      <Route exact path="/" element={<Login />} />
+      <Route exact path="/dashboard" element={<Dashboard />} />
       <Route exact path="/alumni" element={<AluminiPage />} />
       <Route exact path="/personal_info" element={<AlumniPersonalInfo />} />
       <Route exact path="/profile/:username/:id" element={<AlumniInfo />} />
-      <Route exact path="/dashboard" element={<Dashboard />} />
     </Routes>
   );
 }
