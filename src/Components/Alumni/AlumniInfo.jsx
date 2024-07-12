@@ -1,12 +1,32 @@
 import React from "react";
 import Navbar from "../Navbar";
 import Footer from "../Footer";
+import { useState, useEffect } from "react";
 
 function AlumniInfo() {
+  const [repos, setRepos] = useState([]);
+  useEffect(() => {
+    const fetchRepos = async () => {
+      try {
+        const response = await fetch(
+          "https://api.github.com/users/Cyber-Machine/repos?page=1&per_page=10"
+        );
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        const data = await response.json();
+        setRepos(data);
+      } catch (error) {
+        alert("Error");
+      }
+    };
+
+    fetchRepos();
+  }, []);
   return (
     <>
       <Navbar />
-      <div className="flex justify-center pt-10">
+      <div className="flex justify-center pt-16">
         <div className="overflow-hidden max-w-6xl">
           <div className="flex bg-gray-50 rounded-lg p-6 shadow-inner mb-6">
             <img
@@ -21,7 +41,9 @@ function AlumniInfo() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="bg-gray-50 p-6 rounded-lg shadow-inner ">
-              <h3 className="text-xl font-semibold mb-4">Personal Information</h3>
+              <h3 className="text-xl font-semibold mb-4">
+                Personal Information
+              </h3>
               <div className="mb-4">
                 <h4 className="text-lg font-semibold">ACCOUNT</h4>
                 <div className="mt-2 space-y-2">
@@ -58,9 +80,7 @@ function AlumniInfo() {
               </div>
             </div>
             <div className="bg-gray-50 p-6 rounded-lg shadow-inner">
-              <h3 className="text-xl font-semibold mb-4">
-                Work Experience
-              </h3>
+              <h3 className="text-xl font-semibold mb-4">Work Experience</h3>
               <p className="text-gray-700 mb-4">
                 Hi, I'm Alec Thompson, Decisions: If you can't decide, the
                 answer is no. If two equally difficult paths, choose the one
@@ -99,97 +119,22 @@ function AlumniInfo() {
             </div>
             <div className="bg-gray-50 p-6 rounded-lg shadow-inner">
               <h3 className="text-xl font-semibold mb-4">Projects</h3>
-              <div className="space-y-4">
-                <div className="flex justify-between items-center">
-                  <div className="flex items-center">
-                    <img
-                      src="https://randomuser.me/api/portraits/women/44.jpg"
-                      alt="Sophie B."
-                      className="w-10 h-10 rounded-full object-cover"
-                    />
-                    <div className="ml-3">
-                      <p className="font-semibold">Sophie B.</p>
-                      <p className="text-gray-500 text-sm">
-                        Hi! I need more information..
-                      </p>
+              <div className="h-72 overflow-y-auto">
+                {repos.map((github_data, index) => (
+                  <div className="flex justify-between items-start">
+                    <div className="flex items-center">
+                      <div className="ml-1">
+                        <p className="font-semibold">{github_data["name"]}</p>
+                        <p className="text-gray-500 text-sm">
+                          {github_data["description"] ? github_data["description"] : "Not Available"}
+                        </p>
+                      </div>
                     </div>
+                    <a href={github_data["html_url"]} className="text-blue-500 mr-1">
+                      Link
+                    </a>
                   </div>
-                  <a href="#" className="text-blue-500">
-                    REPLY
-                  </a>
-                </div>
-                <div className="flex justify-between items-center">
-                  <div className="flex items-center">
-                    <img
-                      src="https://randomuser.me/api/portraits/women/47.jpg"
-                      alt="Anne Marie"
-                      className="w-10 h-10 rounded-full object-cover"
-                    />
-                    <div className="ml-3">
-                      <p className="font-semibold">Anne Marie</p>
-                      <p className="text-gray-500 text-sm">
-                        Awesome work, can you...
-                      </p>
-                    </div>
-                  </div>
-                  <a href="#" className="text-blue-500">
-                    REPLY
-                  </a>
-                </div>
-                <div className="flex justify-between items-center">
-                  <div className="flex items-center">
-                    <img
-                      src="https://randomuser.me/api/portraits/women/50.jpg"
-                      alt="Ivanna"
-                      className="w-10 h-10 rounded-full object-cover"
-                    />
-                    <div className="ml-3">
-                      <p className="font-semibold">Ivanna</p>
-                      <p className="text-gray-500 text-sm">
-                        About files I can...
-                      </p>
-                    </div>
-                  </div>
-                  <a href="#" className="text-blue-500">
-                    REPLY
-                  </a>
-                </div>
-                <div className="flex justify-between items-center">
-                  <div className="flex items-center">
-                    <img
-                      src="https://randomuser.me/api/portraits/men/51.jpg"
-                      alt="Peterson"
-                      className="w-10 h-10 rounded-full object-cover"
-                    />
-                    <div className="ml-3">
-                      <p className="font-semibold">Peterson</p>
-                      <p className="text-gray-500 text-sm">
-                        Have a great afternoon...
-                      </p>
-                    </div>
-                  </div>
-                  <a href="#" className="text-blue-500">
-                    REPLY
-                  </a>
-                </div>
-                <div className="flex justify-between items-center">
-                  <div className="flex items-center">
-                    <img
-                      src="https://randomuser.me/api/portraits/men/45.jpg"
-                      alt="Nick Daniel"
-                      className="w-10 h-10 rounded-full object-cover"
-                    />
-                    <div className="ml-3">
-                      <p className="font-semibold">Nick Daniel</p>
-                      <p className="text-gray-500 text-sm">
-                        Hi! I need more information...
-                      </p>
-                    </div>
-                  </div>
-                  <a href="#" className="text-blue-500">
-                    REPLY
-                  </a>
-                </div>
+                ))}
               </div>
             </div>
           </div>

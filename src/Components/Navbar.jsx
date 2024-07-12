@@ -4,12 +4,12 @@ import { useState } from "react";
 function Navbar() {
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
+  // with auth context we can get the id of the logged-in user. which can be used to make api call of profile 
   return (
     <div className="bg-gray-900">
       <div className="px-4 py-6 mx-auto lg:py-8 sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
         <div className="relative flex items-center justify-between lg:justify-center lg:space-x-16">
-          <ul className="flex items-center hidden space-x-8 lg:flex">
+          <ul className="flex items-center space-x-8 lg:flex">
             <li>
               <a
                 href="/Alumni"
@@ -22,12 +22,12 @@ function Navbar() {
             </li>
             <li>
               <a
-                href="/Resources"
-                aria-label="Resources"
-                title="Resources"
+                href="/profile/:username/:id"
+                aria-label="Profile"
+                title="Profile"
                 className="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400"
               >
-                Resources
+                Profile
               </a>
             </li>
           </ul>

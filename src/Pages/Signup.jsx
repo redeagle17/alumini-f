@@ -1,31 +1,11 @@
 import { useState, useEffect, Fragment, useContext } from "react";
-import {
-  Listbox,
-  ListboxButton,
-  ListboxOptions,
-  ListboxOption,
-  Transition,
-} from "@headlessui/react";
-import { CheckIcon, SelectorIcon } from "@heroicons/react/solid";
 import { useNavigate } from "react-router-dom";
 
-const department_options = [
-  { name: "AIML" },
-  { name: "CSE" },
-  { name: "ECE" },
-  { name: "ISE" },
-  { name: "EEE" },
-  { name: "Others" },
-];
-
 function Signup() {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [department, setDepartment] = useState(department_options[0]);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [image, setImage] = useState([]);
+
   // const [imageURL, setImageURL] = useState("");
   // const [per, setPerc] = useState(null);
   // const navigate = useNavigate();
@@ -106,92 +86,6 @@ function Signup() {
                       required
                     />
                   </div>
-                  <div className="mt-6 grid grid-cols-4 gap-4">
-                    <div className="col-span-1">
-                      <label
-                        htmlFor="department"
-                        className="block mb-2 text-sm text-gray-600 dark:text-gray-200"
-                      >
-                        Department
-                      </label>
-                      <div className="relative mt-1">
-                        <Listbox value={department} onChange={setDepartment}>
-                          <ListboxButton className="relative w-full cursor-default rounded-lg bg-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-blue-300 sm:text-sm">
-                            <span className="block truncate">
-                              {department.name}
-                            </span>
-                            <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
-                              <SelectorIcon
-                                className="h-5 w-5 text-gray-400"
-                                aria-hidden="true"
-                              />
-                            </span>
-                          </ListboxButton>
-                          <Transition
-                            as={Fragment}
-                            leave="transition ease-in duration-100"
-                            leaveFrom="opacity-100"
-                            leaveTo="opacity-0"
-                          >
-                            <ListboxOptions className="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-                              {department_options.map((dept, idx) => (
-                                <ListboxOption
-                                  key={idx}
-                                  className={({ active }) =>
-                                    `relative cursor-default select-none py-2 pl-8 ${
-                                      active
-                                        ? "bg-blue-100 text-blue-900"
-                                        : "text-gray-900"
-                                    }`
-                                  }
-                                  value={dept}
-                                >
-                                  {({ selected }) => (
-                                    <>
-                                      <span
-                                        className={`block truncate ${
-                                          selected
-                                            ? "font-medium"
-                                            : "font-normal"
-                                        }`}
-                                      >
-                                        {dept.name}
-                                      </span>
-                                      {selected ? (
-                                        <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-blue-600">
-                                          <CheckIcon
-                                            className="h-5 w-5"
-                                            aria-hidden="true"
-                                          />
-                                        </span>
-                                      ) : null}
-                                    </>
-                                  )}
-                                </ListboxOption>
-                              ))}
-                            </ListboxOptions>
-                          </Transition>
-                        </Listbox>
-                      </div>
-                    </div>
-
-                    <div className="col-span-3">
-                      <label
-                        htmlFor="photo"
-                        className="block mb-2 text-sm text-gray-600 dark:text-gray-200"
-                      >
-                        Upload Photo
-                      </label>
-                      <input
-                        type="file"
-                        name="photo"
-                        id="photo"
-                        className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-zinc-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
-                        onChange={(e) => setImage(e.target.files[0])}
-                      />
-                    </div>
-                  </div>
-
                   <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                       <label
