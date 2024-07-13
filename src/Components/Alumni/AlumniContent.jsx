@@ -98,19 +98,97 @@ const data = [
     linkedin: "https://github.com/Cyber-Machine",
     gender: "Female",
   },
+  {
+    id: 8,
+    name: "Ananya Singh Wattamwar",
+    department: "ECE",
+    domain: "Data Engineer",
+    tagline:
+      "Gastropub sustainable tousled prism occupy. Viral XOXO roof party brunch actually, chambray listicle microdosing put a bird on it paleo subway tile squid umami.",
+    imageURL:
+      "https://res.cloudinary.com/diqqf3eq2/image/upload/v1595959131/person-2_ipcjws.jpg",
+    twitter: "https://twitter.com/Aditya_Gupta_99",
+    github: "https://github.com/Aditya-gupta99",
+    linkedin: "https://github.com/Cyber-Machine",
+    gender: "Female",
+  },
+  {
+    id: 9,
+    name: "Ananya Singh Wattamwar",
+    department: "ECE",
+    domain: "Data Engineer",
+    tagline:
+      "Gastropub sustainable tousled prism occupy. Viral XOXO roof party brunch actually, chambray listicle microdosing put a bird on it paleo subway tile squid umami.",
+    imageURL:
+      "https://res.cloudinary.com/diqqf3eq2/image/upload/v1595959131/person-2_ipcjws.jpg",
+    twitter: "https://twitter.com/Aditya_Gupta_99",
+    github: "https://github.com/Aditya-gupta99",
+    linkedin: "https://github.com/Cyber-Machine",
+    gender: "Female",
+  },
+  {
+    id: 10,
+    name: "Ananya Singh Wattamwar",
+    department: "ECE",
+    domain: "Data Engineer",
+    tagline:
+      "Gastropub sustainable tousled prism occupy. Viral XOXO roof party brunch actually, chambray listicle microdosing put a bird on it paleo subway tile squid umami.",
+    imageURL:
+      "https://res.cloudinary.com/diqqf3eq2/image/upload/v1595959131/person-2_ipcjws.jpg",
+    twitter: "https://twitter.com/Aditya_Gupta_99",
+    github: "https://github.com/Aditya-gupta99",
+    linkedin: "https://github.com/Cyber-Machine",
+    gender: "Female",
+  },
+  {
+    id: 11,
+    name: "Ananya Singh Wattamwar",
+    department: "ECE",
+    domain: "Data Engineer",
+    tagline:
+      "Gastropub sustainable tousled prism occupy. Viral XOXO roof party brunch actually, chambray listicle microdosing put a bird on it paleo subway tile squid umami.",
+    imageURL:
+      "https://res.cloudinary.com/diqqf3eq2/image/upload/v1595959131/person-2_ipcjws.jpg",
+    twitter: "https://twitter.com/Aditya_Gupta_99",
+    github: "https://github.com/Aditya-gupta99",
+    linkedin: "https://github.com/Cyber-Machine",
+    gender: "Female",
+  },
 ];
 
 function AlumniContent() {
   // loading functionality is pending
   const [dropdown, setDropdown] = useState(false);
   const [dbData, setdbData] = useState(data);
-  const [dbFilteredData, setdbFilteredData] = useState(data);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 8;
+  const totalPages = Math.ceil(dbData.length / itemsPerPage);
+  const lastIndex = currentPage * itemsPerPage;
+  const firstIndex = lastIndex - itemsPerPage;
+  const pagination = [...Array(totalPages + 1).keys()].slice(1);
+  console.log(pagination);
+  const [dbFilteredData, setdbFilteredData] = useState(dbData.slice(firstIndex, lastIndex));
+  
+  useEffect(() => {
+    setdbFilteredData(dbData.slice(firstIndex, lastIndex));
+  }, [currentPage])
+  
+  const changeCurrentPage = (page) => {
+    setCurrentPage(page);
+  };
+  const prevPage = () => {
+    if (currentPage > 1) setCurrentPage(currentPage - 1);
+  };
+  const nextPage = () => {
+    if (currentPage < totalPages) setCurrentPage(currentPage + 1);
+  };
 
   const filterDataDropdown = (department) => {
     const filteredData = dbData.filter(
       (item) => item.department === department
     );
     setdbFilteredData(filteredData);
+    setCurrentPage(1);
   };
 
   const handleSearch = (search) => {
@@ -118,6 +196,7 @@ function AlumniContent() {
       item.name.toLowerCase().includes(search.toLowerCase())
     );
     setdbFilteredData(filteredData);
+    setCurrentPage(1);
   };
 
   return (
@@ -206,10 +285,52 @@ function AlumniContent() {
               linkedin={a.linkedin}
               twitter={a.twitter}
               imageURL={a.imageURL}
-              dataLength = {dbFilteredData.length}
+              dataLength={dbFilteredData.length}
             />
           ))}
         </div>
+        <nav className="pagination flex justify-center mt-10">
+          <ul className="flex list-none p-0 m-0">
+            <li className="page-item mx-1">
+              <a
+                href="#"
+                className="page-link px-3 py-2 border border-gray-300 bg-white text-gray-700 hover:bg-gray-200 transition-colors duration-300"
+                onClick={prevPage}
+              >
+                Prev
+              </a>
+            </li>
+            {pagination.map((n, i) => (
+              <li
+                className={`page-item mx-1 ${
+                  currentPage === n ? "bg-blue-500 text-white" : ""
+                }`}
+                key={i}
+              >
+                <a
+                  href="#"
+                  className={`page-link px-3 py-2 border border-gray-300 ${
+                    currentPage === n
+                      ? "bg-blue-500 text-white"
+                      : "bg-white text-gray-700 hover:bg-gray-200 transition-colors duration-300"
+                  }`}
+                  onClick={() => changeCurrentPage(n)}
+                >
+                  {n}
+                </a>
+              </li>
+            ))}
+            <li className="page-item mx-1">
+              <a
+                href="#"
+                className="page-link px-3 py-2 border border-gray-300 bg-white text-gray-700 hover:bg-gray-200 transition-colors duration-300"
+                onClick={nextPage}
+              >
+                Next
+              </a>
+            </li>
+          </ul>
+        </nav>
       </div>
     </div>
   );
