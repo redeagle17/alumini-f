@@ -76,7 +76,7 @@ function AlumniList() {
 
   return (
     <>
-      <div className="mx-auto mb-10 lg:max-w-xl sm:text-center mt-10">
+      <div className="mx-auto mb-4 lg:max-w-xl text-center mt-4">
         <p className="inline-block px-3 py-px mb-4 text-xs font-semibold tracking-wider text-teal-900 uppercase rounded-full bg-teal-accent-400">
           Know Our Alumni
         </p>
@@ -88,8 +88,16 @@ function AlumniList() {
       <div className="section">
         <div className="section-center">
           {people.map((person, personIndex) => {
-            const { id, image_src, name, domain, tagline, twitter, github, linkedin } =
-              person;
+            const {
+              id,
+              image_src,
+              name,
+              domain,
+              tagline,
+              twitter,
+              github,
+              linkedin,
+            } = person;
             let position = "nextSlide";
             if (personIndex === index) {
               position = "activeSlide";
@@ -139,7 +147,7 @@ function AlumniList() {
                       fill="currentColor"
                       className="h-5"
                     >
-                      <path d="M22.23 0H1.77C.792 0 0 .774 0 1.727v20.545C0 23.226.792 24 1.77 24h20.46c.978 0 1.77-.774 1.77-1.727V1.727C24 .774 23.208 0 22.23 0zM7.178 20.452H3.533V9.037h3.645v11.415zm-1.815-13.02c-1.164 0-2.108-.95-2.108-2.123 0-1.17.944-2.123 2.108-2.123s2.108.953 2.108 2.123c0 1.173-.944 2.123-2.108 2.123zM20.452 20.452h-3.645v-5.885c0-1.4-.028-3.199-1.954-3.199-1.954 0-2.253 1.527-2.253 3.101v5.983H8.955V9.037h3.499v1.561h.049c.487-.922 1.679-1.897 3.456-1.897 3.692 0 4.373 2.431 4.373 5.589v6.162z" />
+                      <path d="M22.23 0H1.77C.792 0 0 .774 0 1.727v20.545C0 23.226.792 24 1.77 24h20.46c.978 0 1.77-.774 1.77-1.727V1.727C24 .774 23.208 0 22.23 0zM7.178 20.452H3.577V9H7.18v11.452zm-1.8-13.023a2.07 2.07 0 01-2.07-2.07c0-1.143.926-2.07 2.07-2.07s2.07.926 2.07 2.07c0 1.143-.926 2.07-2.07 2.07zM20.452 20.45h-3.603V14.93c0-1.317-.025-3.01-1.834-3.01-1.833 0-2.112 1.43-2.112 2.91v5.624H9.301V9h3.452v1.56h.048c.481-.914 1.658-1.875 3.414-1.875 3.649 0 4.322 2.403 4.322 5.526v6.24h-.085z" />
                     </svg>
                   </a>
                 </p>

@@ -206,6 +206,7 @@ function AlumniContent() {
               linkedin={a.linkedin}
               twitter={a.twitter}
               imageURL={a.imageURL}
+              dataLength = {dbFilteredData.length}
             />
           ))}
         </div>

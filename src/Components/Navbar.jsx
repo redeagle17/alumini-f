@@ -2,9 +2,8 @@ import React from "react";
 import { useState } from "react";
 
 function Navbar() {
-
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  // with auth context we can get the id of the logged-in user. which can be used to make api call of profile 
+
   return (
     <div className="bg-gray-900">
       <div className="px-4 py-6 mx-auto lg:py-8 sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
@@ -12,12 +11,12 @@ function Navbar() {
           <ul className="flex items-center hidden space-x-8 lg:flex">
             <li>
               <a
-                href="/Dashboard"
+                href="/home"
                 aria-label="HomePage"
                 title="HomePage"
                 className="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400"
               >
-                Dashboard
+                Home
               </a>
             </li>
             <li>
@@ -32,7 +31,7 @@ function Navbar() {
             </li>
           </ul>
           <a
-            href="/Dashboard"
+            href="/home"
             aria-label="HomePage"
             title="HomePage"
             className="inline-flex items-center"
@@ -101,92 +100,63 @@ function Navbar() {
             {isMenuOpen && (
               <div className="absolute top-0 left-0 w-full z-20">
                 <div className="p-5 bg-white border rounded shadow-sm">
-                  <div className="flex items-center justify-between mb-4">
-                    <div>
-                      <a
-                        href="/Dashboard"
-                        aria-label="HomePage"
-                        title="HomePage"
-                        className="inline-flex items-center"
-                      >
-                        <svg
-                          className="w-8 text-deep-blue-accent-400"
-                          viewBox="0 0 24 24"
-                          strokeLinejoin="round"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                          strokeMiterlimit="10"
-                          stroke="currentColor"
-                          fill="none"
-                        >
-                          <rect x="3" y="1" width="7" height="12" />
-                          <rect x="3" y="17" width="7" height="6" />
-                          <rect x="14" y="1" width="7" height="6" />
-                          <rect x="14" y="11" width="7" height="12" />
-                        </svg>
-                        <span className="ml-2 text-xl font-bold tracking-wide text-gray-800 uppercase">
-                          HomePage
-                        </span>
-                      </a>
-                    </div>
-                    <div>
-                      <button
-                        aria-label="Close Menu"
-                        title="Close Menu"
-                        className="p-2 -mt-2 -mr-2 transition duration-200 rounded hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
-                        onClick={() => setIsMenuOpen(false)}
-                      >
-                        <svg className="w-5 text-gray-600" viewBox="0 0 24 24">
-                          <path
-                            fill="currentColor"
-                            d="M19.7,4.3c-0.4-0.4-1-0.4-1.4,0L12,10.6L5.7,4.3c-0.4-0.4-1-0.4-1.4,0s-0.4,1,0,1.4l6.3,6.3l-6.3,6.3 c-0.4,0.4-0.4,1,0,1.4C4.5,19.9,4.7,20,5,20s0.5-0.1,0.7-0.3l6.3-6.3l6.3,6.3c0.2,0.2,0.5,0.3,0.7,0.3s0.5-0.1,0.7-0.3 c0.4-0.4,0.4-1,0-1.4L13.4,12l6.3-6.3C20.1,5.3,20.1,4.7,19.7,4.3z"
-                          />
-                        </svg>
-                      </button>
-                    </div>
+                  <div className="flex justify-between mb-4">
+                    <nav>
+                      <ul className="space-y-4">
+                        <li>
+                          <a
+                            href="/home"
+                            aria-label="Home"
+                            title="Home"
+                            className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-blue-900"
+                          >
+                            Home
+                          </a>
+                        </li>
+                        <li>
+                          <a
+                            href="/alumni"
+                            aria-label="Alumni"
+                            title="Alunmi"
+                            className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-blue-900"
+                          >
+                            Alumni
+                          </a>
+                        </li>
+                        <li>
+                          <a
+                            href="/profile/:username/:id"
+                            aria-label="Profile"
+                            title="Profile"
+                            className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-blue-900"
+                          >
+                            Profile
+                          </a>
+                        </li>
+                        <li>
+                          <button
+                            className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-blue-900"
+                            // onClick={handleLogout}
+                          >
+                            Sign out
+                          </button>
+                        </li>
+                      </ul>
+                    </nav>
+                    <button
+                      aria-label="Close Menu"
+                      title="Close Menu"
+                      className="flex justify-start p-2 -mt-2 -mr-2 transition duration-200 rounded hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      <svg className="w-5 text-gray-600" viewBox="0 0 24 24">
+                        <path
+                          fill="currentColor"
+                          d="M19.7,4.3c-0.4-0.4-1-0.4-1.4,0L12,10.6L5.7,4.3c-0.4-0.4-1-0.4-1.4,0s-0.4,1,0,1.4l6.3,6.3l-6.3,6.3 c-0.4,0.4-0.4,1,0,1.4C4.5,19.9,4.7,20,5,20s0.5-0.1,0.7-0.3l6.3-6.3l6.3,6.3c0.2,0.2,0.5,0.3,0.7,0.3s0.5-0.1,0.7-0.3 c0.4-0.4,0.4-1,0-1.4L13.4,12l6.3-6.3C20.1,5.3,20.1,4.7,19.7,4.3z"
+                        />
+                      </svg>
+                    </button>
                   </div>
-                  <nav>
-                    <ul className="space-y-4">
-                      <li>
-                        <a
-                          href="/Alumni"
-                          aria-label="Alumni"
-                          title="Alumni"
-                          className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-blue-900"
-                        >
-                          Alumni
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          href="/Resources"
-                          aria-label="Resources"
-                          title="Resources"
-                          className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-blue-900"
-                        >
-                          Resources
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          href="/Calendar"
-                          aria-label="Calendar"
-                          title="Calendar"
-                          className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-blue-900"
-                        >
-                          Calendar
-                        </a>
-                      </li>
-                      <li>
-                        <button
-                          className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-blue-900"
-                          onClick={handleLogout}
-                        >
-                          Sign out
-                        </button>
-                      </li>
-                    </ul>
-                  </nav>
                 </div>
               </div>
             )}
