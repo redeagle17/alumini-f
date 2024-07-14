@@ -184,7 +184,7 @@ function AlumniContent() {
   };
 
   const filterDataDropdown = (department) => {
-    const filteredData = dbData.filter(
+    const filteredData = dbFilteredData.filter(
       (item) => item.department === department
     );
     setdbFilteredData(filteredData);
@@ -192,7 +192,7 @@ function AlumniContent() {
   };
 
   const handleSearch = (search) => {
-    const filteredData = dbData.filter((item) =>
+    const filteredData = dbFilteredData.filter((item) =>
       item.name.toLowerCase().includes(search.toLowerCase())
     );
     setdbFilteredData(filteredData);
