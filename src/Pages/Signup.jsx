@@ -1,61 +1,32 @@
 import { useState, useEffect, Fragment, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-
-  // const [imageURL, setImageURL] = useState("");
-  // const [per, setPerc] = useState(null);
   // const navigate = useNavigate();
   // const { dispatch } = useContext(AuthContext);
-  // const [errors, setErrors] = useState({});
 
-  // const validate = async () => {
-  //   if (!email) {
-  //     errors.email = "Email is required";
-  //   } else if (!/\S+@\S+\.\S+/.test(email)) {
-  //     errors.email = "Email is invalid";
-  //   }
-  //   if (!password) {
-  //     errors.password = "Password is required";
-  //   }
-  //   return errors;
-  // };
-
-  // handleSubmit function is incomplete
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  // const validationErrors = await validate();
-  // if (Object.keys(validationErrors).length === 0) {
-  //   const userData = {
-  //     email: email,
-  //     password: password,
-  // ---------- ADD MORE FIELDS TO SAVE IN DATABASE--------------
-  //   };
-  //   try {
-  //     const res = await axios.post(
-  //       "https://book-store-backend-alpha.vercel.app/book_store/users/sign_in",
-  //       userData
-  //     );
-  //     if (res.data) {
-  //       toast.success("Login successful!");
-  //       localStorage.setItem("Users", JSON.stringify(res.data.user));
-  //       setInterval(() => {
-  //         window.location.reload();
-  //       }, 1000);
-  //     }
-  //   } catch (err) {
-  //     toast.error(err.response.data.message);
-  //     setInterval(() => {}, 2000);
-  //   }
-  //   setErrors({});
-  // } else {
-  //   setErrors(validationErrors);
-  // }
-  //   alert("Signup clicked");
-  // };
+  const handleSubmit = async (e) => {
+    console.log(email, password);
+    e.preventDefault();
+    const userData = {
+      email: email,
+      password: password,
+    };
+    const res = await axios.post(
+      "http://localhost:8000/api/v1/users/register",
+      userData
+    );
+    console.log(res.data);
+    if (res.data.statusCode === 201) {
+      alert("SignUp Success");
+    } else if (res.data.statusCode === 409) {
+      alert("Not");
+    }
+  };
   return (
     <>
       <div className="bg-white dark:bg-gray-900">
@@ -68,7 +39,7 @@ function Signup() {
                 </h1>
               </div>
               <div className="mt-8">
-                <form>
+                <form onSubmit={handleSubmit}>
                   <div className="mt-6">
                     <label
                       htmlFor="email"
