@@ -1,6 +1,7 @@
 import { useState, useEffect, Fragment, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 function Signup() {
   const [email, setEmail] = useState("");
@@ -10,23 +11,26 @@ function Signup() {
   // const { dispatch } = useContext(AuthContext);
 
   const handleSubmit = async (e) => {
-    console.log(email, password);
     e.preventDefault();
+
     const userData = {
       email: email,
       password: password,
+      confirmPassword: confirmPassword,
     };
-    const res = await axios.post(
-      "http://localhost:8000/api/v1/users/register",
-      userData
-    );
-    console.log(res.data);
-    if (res.data.statusCode === 201) {
-      alert("SignUp Success");
-    } else if (res.data.statusCode === 409) {
-      alert("Not");
+
+    try {
+      const res = await axios.post(
+        "http://localhost:8000/api/v1/users/register",
+        userData
+      );
+      toast.success(res.data.message);
+    } catch (error) {
+      const res = error.response;
+      toast.error(res.data.message);
     }
   };
+
   return (
     <>
       <div className="bg-white dark:bg-gray-900">
@@ -54,7 +58,6 @@ function Signup() {
                       placeholder="Email"
                       className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-zinc-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                       onChange={(e) => setEmail(e.target.value)}
-                      required
                     />
                   </div>
                   <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -72,7 +75,6 @@ function Signup() {
                         placeholder="********"
                         className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-zinc-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                         onChange={(e) => setPassword(e.target.value)}
-                        required
                       />
                     </div>
 
@@ -90,7 +92,6 @@ function Signup() {
                         placeholder="********"
                         className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-zinc-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                         onChange={(e) => setConfirmPassword(e.target.value)}
-                        required
                       />
                     </div>
                   </div>

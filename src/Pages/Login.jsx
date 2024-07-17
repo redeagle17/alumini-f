@@ -1,54 +1,30 @@
 import React from "react";
+import axios from "axios";
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 function Login() {
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [errors, setErrors] = useState({});
-
-  const validate = async () => {
-    if (!email) {
-      errors.email = "Email is required";
-    } else if (!/\S+@\S+\.\S+/.test(email)) {
-      errors.email = "Email is invalid";
-    }
-    if (!password) {
-      errors.password = "Password is required";
-    }
-    return errors;
-  };
 
   // handleSubmit function is incomplete
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // const validationErrors = await validate();
-    // if (Object.keys(validationErrors).length === 0) {
-    //   const userData = {
-    //     email: email,
-    //     password: password,
-    //   };
-    //   try {
-    //     const res = await axios.post(
-    //       "https://book-store-backend-alpha.vercel.app/book_store/users/sign_in",
-    //       userData
-    //     );
-    //     if (res.data) {
-    //       toast.success("Login successful!");
-    //       localStorage.setItem("Users", JSON.stringify(res.data.user));
-    //       setInterval(() => {
-    //         window.location.reload();
-    //       }, 1000);
-    //     }
-    //   } catch (err) {
-    //     toast.error(err.response.data.message);
-    //     setInterval(() => {}, 2000);
-    //   }
-    //   setErrors({});
-    // } else {
-    //   setErrors(validationErrors);
-    // }
-    alert("Login clicked")
+    const userData = {
+      email: email,
+      password: password,
+    };
+
+    try {
+      const res = await axios.post(
+        "http://localhost:8000/api/v1/users/login",
+        userData
+      );
+      toast.success(res.data.message);
+    } catch (error) {
+      const res = error.response;
+      toast.error(res.data.message);
+    }
   };
 
   return (
