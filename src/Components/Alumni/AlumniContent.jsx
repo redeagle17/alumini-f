@@ -1,178 +1,40 @@
 import React, { useState, useEffect, useCallback } from "react";
 import AlumniCard from "./AlumniCard";
-
-const data = [
-  {
-    id: 1,
-    name: "Maaz Karim",
-    department: "AIML",
-    domain: "Deep Learning",
-    tagline: "Reinforcing deep learning one epoch at a time.",
-    imageURL:
-      "https://res.cloudinary.com/diqqf3eq2/image/upload/v1595959121/person-1_aufeoq.jpg",
-    twitter: "https://twitter.com/_MaazKarim_",
-    github: "https://github.com/Cyber-Machine",
-    linkedin: "https://github.com/Cyber-Machine",
-    gender: "Male",
-  },
-  {
-    id: 2,
-    name: "Aditya Gupta",
-    department: "ECE",
-    domain: "Android Development",
-    tagline: "Building Android Application by fixing dependencies.",
-    imageURL:
-      "https://pbs.twimg.com/profile_images/1537609745741139968/MV2aJner_400x400.jpg",
-    twitter: "https://twitter.com/Aditya_Gupta_99",
-    github: "https://github.com/Aditya-gupta99",
-    linkedin: "https://github.com/Cyber-Machine",
-    gender: "Male",
-  },
-  {
-    id: 3,
-    name: "Ankur Singh",
-    department: "AIML",
-    domain: "Backend Development",
-    tagline:
-      "Bulding Backend application by using Node.js framework and applying it fully in real world.",
-    imageURL:
-      "https://res.cloudinary.com/diqqf3eq2/image/upload/v1586883417/person-3_ipa0mj.jpg",
-    twitter: "https://twitter.com/Aditya_Gupta_99",
-    github: "https://github.com/Aditya-gupta99",
-    linkedin: "https://github.com/Cyber-Machine",
-    gender: "Male",
-  },
-  {
-    id: 4,
-    name: "Anukalp Jain",
-    department: "AIML",
-    domain: "Frontend Development",
-    tagline:
-      "Gastropub sustainable tousled prism occupy. Viral XOXO roof party brunch actually, chambray listicle microdosing put a bird on it paleo subway tile squid umami.",
-    imageURL:
-      "https://res.cloudinary.com/diqqf3eq2/image/upload/v1586883417/person-3_ipa0mj.jpg",
-    twitter: "https://twitter.com/Aditya_Gupta_99",
-    github: "https://github.com/Aditya-gupta99",
-    linkedin: "https://github.com/Cyber-Machine",
-    gender: "Male",
-  },
-  {
-    id: 5,
-    name: "Krish Tiwary",
-    department: "ISE",
-    domain: "Data Engineer",
-    tagline:
-      "Gastropub sustainable tousled prism occupy. Viral XOXO roof party brunch actually, chambray listicle microdosing put a bird on it paleo subway tile squid umami.",
-    imageURL:
-      "https://res.cloudinary.com/diqqf3eq2/image/upload/v1595959131/person-2_ipcjws.jpg",
-    twitter: "https://twitter.com/Aditya_Gupta_99",
-    github: "https://github.com/Aditya-gupta99",
-    linkedin: "https://github.com/Cyber-Machine",
-    gender: "Male",
-  },
-  {
-    id: 6,
-    name: "Akanksha Singh",
-    department: "ISE",
-    domain: "Data Engineer",
-    tagline:
-      "Gastropub sustainable tousled prism occupy. Viral XOXO roof party brunch actually, chambray listicle microdosing put a bird on it paleo subway tile squid umami.",
-    imageURL:
-      "https://res.cloudinary.com/diqqf3eq2/image/upload/v1595959131/person-2_ipcjws.jpg",
-    twitter: "https://twitter.com/Aditya_Gupta_99",
-    github: "https://github.com/Aditya-gupta99",
-    linkedin: "https://github.com/Cyber-Machine",
-    gender: "Female",
-  },
-  {
-    id: 7,
-    name: "Ananya Singh Wattamwar",
-    department: "ECE",
-    domain: "Data Engineer",
-    tagline:
-      "Gastropub sustainable tousled prism occupy. Viral XOXO roof party brunch actually, chambray listicle microdosing put a bird on it paleo subway tile squid umami.",
-    imageURL:
-      "https://res.cloudinary.com/diqqf3eq2/image/upload/v1595959131/person-2_ipcjws.jpg",
-    twitter: "https://twitter.com/Aditya_Gupta_99",
-    github: "https://github.com/Aditya-gupta99",
-    linkedin: "https://github.com/Cyber-Machine",
-    gender: "Female",
-  },
-  {
-    id: 8,
-    name: "Ananya Singh Wattamwar",
-    department: "ECE",
-    domain: "Data Engineer",
-    tagline:
-      "Gastropub sustainable tousled prism occupy. Viral XOXO roof party brunch actually, chambray listicle microdosing put a bird on it paleo subway tile squid umami.",
-    imageURL:
-      "https://res.cloudinary.com/diqqf3eq2/image/upload/v1595959131/person-2_ipcjws.jpg",
-    twitter: "https://twitter.com/Aditya_Gupta_99",
-    github: "https://github.com/Aditya-gupta99",
-    linkedin: "https://github.com/Cyber-Machine",
-    gender: "Female",
-  },
-  {
-    id: 9,
-    name: "Ananya Singh Wattamwar",
-    department: "ECE",
-    domain: "Data Engineer",
-    tagline:
-      "Gastropub sustainable tousled prism occupy. Viral XOXO roof party brunch actually, chambray listicle microdosing put a bird on it paleo subway tile squid umami.",
-    imageURL:
-      "https://res.cloudinary.com/diqqf3eq2/image/upload/v1595959131/person-2_ipcjws.jpg",
-    twitter: "https://twitter.com/Aditya_Gupta_99",
-    github: "https://github.com/Aditya-gupta99",
-    linkedin: "https://github.com/Cyber-Machine",
-    gender: "Female",
-  },
-  {
-    id: 10,
-    name: "Ananya Singh Wattamwar",
-    department: "ECE",
-    domain: "Data Engineer",
-    tagline:
-      "Gastropub sustainable tousled prism occupy. Viral XOXO roof party brunch actually, chambray listicle microdosing put a bird on it paleo subway tile squid umami.",
-    imageURL:
-      "https://res.cloudinary.com/diqqf3eq2/image/upload/v1595959131/person-2_ipcjws.jpg",
-    twitter: "https://twitter.com/Aditya_Gupta_99",
-    github: "https://github.com/Aditya-gupta99",
-    linkedin: "https://github.com/Cyber-Machine",
-    gender: "Female",
-  },
-  {
-    id: 11,
-    name: "Ananya Singh Wattamwar",
-    department: "ECE",
-    domain: "Data Engineer",
-    tagline:
-      "Gastropub sustainable tousled prism occupy. Viral XOXO roof party brunch actually, chambray listicle microdosing put a bird on it paleo subway tile squid umami.",
-    imageURL:
-      "https://res.cloudinary.com/diqqf3eq2/image/upload/v1595959131/person-2_ipcjws.jpg",
-    twitter: "https://twitter.com/Aditya_Gupta_99",
-    github: "https://github.com/Aditya-gupta99",
-    linkedin: "https://github.com/Cyber-Machine",
-    gender: "Female",
-  },
-];
+import axios from "axios";
 
 function AlumniContent() {
   // loading functionality is pending
   const [dropdown, setDropdown] = useState(false);
-  const [dbData, setdbData] = useState(data);
+  const [dbData, setdbData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 8;
   const totalPages = Math.ceil(dbData.length / itemsPerPage);
   const lastIndex = currentPage * itemsPerPage;
   const firstIndex = lastIndex - itemsPerPage;
   const pagination = [...Array(totalPages + 1).keys()].slice(1);
-  console.log(pagination);
-  const [dbFilteredData, setdbFilteredData] = useState(dbData.slice(firstIndex, lastIndex));
-  
+  const [dbFilteredData, setdbFilteredData] = useState(
+    dbData.slice(firstIndex, lastIndex)
+  );
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await axios.get(
+          "http://localhost:8000/api/v1/users_data/all_users_profile"
+        );
+        setdbData(res.data.data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   useEffect(() => {
     setdbFilteredData(dbData.slice(firstIndex, lastIndex));
-  }, [currentPage])
-  
+  }, [currentPage]);
+
   const changeCurrentPage = (page) => {
     setCurrentPage(page);
   };
@@ -276,16 +138,16 @@ function AlumniContent() {
           {dbFilteredData.map((a) => (
             <AlumniCard
               key={a.id}
-              id={a.id}
-              name={a.name}
+              user_id={a.user_id}
+              firstName={a.firstName}
+              lastName={a.lastName}
               department={a.department}
               gender={a.gender}
-              domain={a.domain}
+              headline={a.headline}
               github={a.github}
               linkedin={a.linkedin}
               twitter={a.twitter}
-              imageURL={a.imageURL}
-              dataLength={dbFilteredData.length}
+              profileImage={a.profileImage}
             />
           ))}
         </div>
