@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import axios from "axios";
 
 //Add this in database
 const department_options = [
@@ -31,7 +32,6 @@ function AlumniPersonalInfo() {
     {
       position: "",
       company: "",
-      description: "",
       startDate: "",
       endDate: "",
       currentWork: false,
@@ -39,10 +39,7 @@ function AlumniPersonalInfo() {
   ]);
 
   const handleAddWorkExperience = () => {
-    setWorkExperiences([
-      ...workExperiences,
-      { position: "", company: "", description: "" },
-    ]);
+    setWorkExperiences([...workExperiences, { position: "", company: "" }]);
   };
 
   const handleRemoveWorkExperience = (index) => {
@@ -62,13 +59,93 @@ function AlumniPersonalInfo() {
     setWorkExperiences(newWorkExperiences);
   };
 
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   const data = {
+  //     firstName: firstName,
+  //     lastName: lastName,
+  //     location: location,
+  //     gender: gender,
+  //     headline: headline,
+  //     phone: phone,
+  //     linkedin: linkedin,
+  //     github: github,
+  //     twitter: twitter,
+  //     college: college,
+  //     department: department,
+  //     about: about,
+  //     image: image,
+  //     workExperiences: workExperiences,
+  //   };
+  //   const res = axios.post(
+  //     "http://localhost:8000/api/v1/users_data/profile",
+  //     data
+  //   );
+  //   console.log(res);
+  // };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData();
+    formData.append("firstName", firstName);
+    formData.append("lastName", lastName);
+    formData.append("location", location);
+    formData.append("gender", gender);
+    formData.append("headline", headline);
+    formData.append("phone", phone);
+    formData.append("linkedin", linkedin);
+    formData.append("github", github);
+    formData.append("twitter", twitter);
+    formData.append("college", college);
+    formData.append("department", department);
+    formData.append("about", about);
+    formData.append("profileImage", image);
+
+    workExperiences.forEach((workExperience, index) => {
+      formData.append(
+        `workExperiences[${index}][position]`,
+        workExperience.position
+      );
+      formData.append(
+        `workExperiences[${index}][company]`,
+        workExperience.company
+      );
+      formData.append(
+        `workExperiences[${index}][startDate]`,
+        workExperience.startDate
+      );
+      formData.append(
+        `workExperiences[${index}][endDate]`,
+        workExperience.endDate
+      );
+      formData.append(
+        `workExperiences[${index}][currentWork]`,
+        workExperience.currentWork
+      );
+    });
+
+    try {
+      const res = await axios.post(
+        "http://localhost:8000/api/v1/users_data/profile",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      console.log(res.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
   return (
     <div className="min-h-screen bg-gray-900 text-white flex justify-center items-start pt-10">
       <div className="rounded-lg overflow-hidden w-full max-w-4xl p-6">
         <h2 className="flex text-2xl font-bold mb-4 justify-center">
           Profile Information
         </h2>
-        <form className="space-y-6">
+        <form className="space-y-6" onSubmit={handleSubmit}>
           <div className=" p-6 rounded-lg shadow-inner">
             <h3 className="text-xl font-semibold mb-4">Personal Details</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
