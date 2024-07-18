@@ -21,6 +21,7 @@ function Login() {
         userData
       );
       toast.success(res.data.message);
+      localStorage.setItem("Users", JSON.stringify(res.data.data));
     } catch (error) {
       const res = error.response;
       toast.error(res.data.message);

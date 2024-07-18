@@ -1,8 +1,8 @@
 import React from "react";
 import { useState } from "react";
 import axios from "axios";
+import { toast } from "react-toastify";
 
-//Add this in database
 const department_options = [
   { name: "AIML" },
   { name: "CSE" },
@@ -59,34 +59,11 @@ function AlumniPersonalInfo() {
     setWorkExperiences(newWorkExperiences);
   };
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   const data = {
-  //     firstName: firstName,
-  //     lastName: lastName,
-  //     location: location,
-  //     gender: gender,
-  //     headline: headline,
-  //     phone: phone,
-  //     linkedin: linkedin,
-  //     github: github,
-  //     twitter: twitter,
-  //     college: college,
-  //     department: department,
-  //     about: about,
-  //     image: image,
-  //     workExperiences: workExperiences,
-  //   };
-  //   const res = axios.post(
-  //     "http://localhost:8000/api/v1/users_data/profile",
-  //     data
-  //   );
-  //   console.log(res);
-  // };
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    const userData = JSON.parse(localStorage.getItem("Users"));
     const formData = new FormData();
+    formData.append("user_id", userData._id);
     formData.append("firstName", firstName);
     formData.append("lastName", lastName);
     formData.append("location", location);
@@ -134,9 +111,10 @@ function AlumniPersonalInfo() {
           },
         }
       );
-      console.log(res.data);
+      toast.success(res.data.message);
     } catch (error) {
-      console.error(error);
+      const res = error.response;
+      toast.error(res.data.message);
     }
   };
   return (
