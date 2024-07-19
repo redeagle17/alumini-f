@@ -1,72 +1,88 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { FiChevronRight, FiChevronLeft } from "react-icons/fi";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 // Store it in database
-const data = [
-  {
-    id: 1,
-    name: "Maaz Karim",
-    domain: "Deep Learning",
-    tagline: "Reinforcing deep learning one epoch at a time.",
-    image_src:
-      "https://res.cloudinary.com/diqqf3eq2/image/upload/v1595959121/person-1_aufeoq.jpg",
-    twitter: "https://twitter.com/_MaazKarim_",
-    github: "https://github.com/Cyber-Machine",
-    linkedin: "https://github.com/Cyber-Machine",
-  },
-  {
-    id: 2,
-    name: "Aditya Gupta",
-    domain: "Android Development",
-    tagline: "Building Android Application by fixing dependencies.",
-    image_src:
-      "https://pbs.twimg.com/profile_images/1537609745741139968/MV2aJner_400x400.jpg",
-    twitter: "https://twitter.com/Aditya_Gupta_99",
-    github: "https://github.com/Aditya-gupta99",
-    linkedin: "https://github.com/Cyber-Machine",
-  },
-  {
-    id: 3,
-    name: "Ankur Singh",
-    domain: "Backend Development",
-    tagline:
-      "Bulding Backend application by using Node.js framework and applying it fully in real world.",
-    image_src:
-      "https://res.cloudinary.com/diqqf3eq2/image/upload/v1586883417/person-3_ipa0mj.jpg",
-    twitter: "https://twitter.com/Aditya_Gupta_99",
-    github: "https://github.com/Aditya-gupta99",
-    linkedin: "https://github.com/Cyber-Machine",
-  },
-  {
-    id: 4,
-    name: "Anukalp Jain",
-    domain: "Frontend Development",
-    tagline:
-      "Gastropub sustainable tousled prism occupy. Viral XOXO roof party brunch actually, chambray listicle microdosing put a bird on it paleo subway tile squid umami.",
-    image_src:
-      "https://res.cloudinary.com/diqqf3eq2/image/upload/v1595959131/person-2_ipcjws.jpg",
-    twitter: "https://twitter.com/Aditya_Gupta_99",
-    github: "https://github.com/Aditya-gupta99",
-    linkedin: "https://github.com/Cyber-Machine",
-  },
-];
+// const data = [
+//   {
+//     id: 1,
+//     name: "Maaz Karim",
+//     domain: "Deep Learning",
+//     tagline: "Reinforcing deep learning one epoch at a time.",
+//     image_src:
+//       "https://res.cloudinary.com/diqqf3eq2/image/upload/v1595959121/person-1_aufeoq.jpg",
+//     twitter: "https://twitter.com/_MaazKarim_",
+//     github: "https://github.com/Cyber-Machine",
+//     linkedin: "https://github.com/Cyber-Machine",
+//   },
+//   {
+//     id: 2,
+//     name: "Aditya Gupta",
+//     domain: "Android Development",
+//     tagline: "Building Android Application by fixing dependencies.",
+//     image_src:
+//       "https://pbs.twimg.com/profile_images/1537609745741139968/MV2aJner_400x400.jpg",
+//     twitter: "https://twitter.com/Aditya_Gupta_99",
+//     github: "https://github.com/Aditya-gupta99",
+//     linkedin: "https://github.com/Cyber-Machine",
+//   },
+//   {
+//     id: 3,
+//     name: "Ankur Singh",
+//     domain: "Backend Development",
+//     tagline:
+//       "Bulding Backend application by using Node.js framework and applying it fully in real world.",
+//     image_src:
+//       "https://res.cloudinary.com/diqqf3eq2/image/upload/v1586883417/person-3_ipa0mj.jpg",
+//     twitter: "https://twitter.com/Aditya_Gupta_99",
+//     github: "https://github.com/Aditya-gupta99",
+//     linkedin: "https://github.com/Cyber-Machine",
+//   },
+//   {
+//     id: 4,
+//     name: "Anukalp Jain",
+//     domain: "Frontend Development",
+//     tagline:
+//       "Gastropub sustainable tousled prism occupy. Viral XOXO roof party brunch actually, chambray listicle microdosing put a bird on it paleo subway tile squid umami.",
+//     image_src:
+//       "https://res.cloudinary.com/diqqf3eq2/image/upload/v1595959131/person-2_ipcjws.jpg",
+//     twitter: "https://twitter.com/Aditya_Gupta_99",
+//     github: "https://github.com/Aditya-gupta99",
+//     linkedin: "https://github.com/Cyber-Machine",
+//   },
+// ];
 
 function AlumniList() {
-  const [people, setPeople] = useState(data);
+  const [alumni, setAlumni] = useState([]);
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
-    const lastIndex = people.length - 1;
+    const fetchData = async () => {
+      try {
+        const res = await axios.get(
+          "http://localhost:8000/api/v1/users_data/all_users_profile"
+        );
+        setAlumni(res.data.data);
+      } catch (error) {
+        console.error("Error in fetching data:", error);
+        toast.error("Error in fetching data");
+      }
+    };
+    fetchData();
+  }, []);
+  
+  useEffect(() => {
+    const lastIndex =  alumni.length - 1;
     if (index < 0) {
       setIndex(lastIndex);
     }
     if (index > lastIndex) {
       setIndex(0);
     }
-  }, [index, people]);
+  }, [index,  alumni]);
 
-  // autoslide, clearInterval = een cleanup functie noodzakelijk bij interval
   useEffect(() => {
     let slider = setInterval(() => {
       setIndex(index + 1);
@@ -87,13 +103,14 @@ function AlumniList() {
       </div>
       <div className="section">
         <div className="section-center">
-          {people.map((person, personIndex) => {
+          {alumni.map((person, personIndex) => {
             const {
               id,
-              image_src,
-              name,
-              domain,
-              tagline,
+              profileImage,
+              firstName,
+              lastName,
+              college,
+              department,
               twitter,
               github,
               linkedin,
@@ -104,15 +121,16 @@ function AlumniList() {
             }
             if (
               personIndex === index - 1 ||
-              (index === 0 && personIndex === people.length - 1)
+              (index === 0 && personIndex ===  alumni.length - 1)
             ) {
               position = "lastSlide";
             }
             return (
               <article key={id} className={position}>
-                <img src={image_src} alt={name} className="person-img" />
-                <h4>{name}</h4>
-                <p className="title">{domain}</p>
+                <img src={profileImage} alt={firstName} className="person-img" />
+                <h4>{firstName}{" "}{lastName}</h4>
+                <p className="title">{department}</p>
+                <p className="text">{college}</p>
                 <p className="flex justify-center space-x-3 mt-2">
                   <a
                     href={twitter}
@@ -151,7 +169,6 @@ function AlumniList() {
                     </svg>
                   </a>
                 </p>
-                <p className="text">{tagline}</p>
               </article>
             );
           })}
