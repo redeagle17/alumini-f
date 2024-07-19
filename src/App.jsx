@@ -17,7 +17,7 @@ function App() {
         <Route exact path="/home" element={<Dashboard />} />
         <Route exact path="/alumni" element={<AluminiPage />} />
         <Route exact path="/personal_info" element={<AlumniPersonalInfo />} />
-        <Route exact path="/profile/:firstName/:user_id" element={<AlumniProfileInfo />} />
+        <Route exact path="/profile/:user_id" element={<AlumniProfileInfo />} />
       </Routes>
       <ToastContainer />
     </>

@@ -58,7 +58,7 @@ function Navbar() {
           <ul className="flex items-center hidden space-x-8 lg:flex">
             <li>
               <a
-                href={`/profile/Ankur/${userData._id}`}
+                href={`/profile/${userData._id}`}
                 aria-label="Profile"
                 title="Profile"
                 className="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400"

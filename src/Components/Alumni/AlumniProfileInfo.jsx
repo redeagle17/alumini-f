@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 import axios from "axios";
 
 function AlumniProfileInfo() {
-  const { firstName, user_id } = useParams();
+  const { user_id } = useParams();
   const [userData, setUserData] = useState([]);
   const [workExperience, setWorkExperience] = useState([]);
   const [repos, setRepos] = useState([]);
@@ -16,7 +16,7 @@ function AlumniProfileInfo() {
     const getSingleUserData = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:8000/api/v1/users_data/${firstName}/${user_id}/single_user_profile`
+          `http://localhost:8000/api/v1/users_data/${user_id}/single_user_profile`
         );
         setUserData(res.data.data);
         setWorkExperience(res.data.data.workExperiences);
@@ -25,7 +25,7 @@ function AlumniProfileInfo() {
       }
     };
     getSingleUserData();
-  }, [firstName, user_id]);
+  }, [user_id]);
 
   useEffect(() => {
     const fetchRepos = async () => {
@@ -53,20 +53,6 @@ function AlumniProfileInfo() {
       <Navbar />
       <div className="flex justify-center pt-16">
         <div className="overflow-hidden max-w-6xl">
-          {/* <div className="flex bg-gray-100 rounded-lg p-6 shadow-inner mb-6">
-            <img
-              src={userData.profileImage}
-              alt={userData.firstName}
-              className="w-24 h-24 rounded-lg object-cover"
-            />
-            <div className="ml-6 mt-2">
-              <h2 className="text-2xl font-bold">
-                {userData.firstName} {userData.lastName}
-              </h2>
-              <p className="text-gray-600">{userData.college}</p>
-              <p className="text-gray-600">{userData.headline}</p>
-            </div>
-          </div> */}
           <div className="flex flex-col md:flex-row bg-gray-100 rounded-lg p-6 shadow-inner mb-6">
             <img
               src={userData.profileImage}
