@@ -53,7 +53,7 @@ function AlumniProfileInfo() {
       <Navbar />
       <div className="flex justify-center pt-16">
         <div className="overflow-hidden max-w-6xl">
-          <div className="flex bg-gray-100 rounded-lg p-6 shadow-inner mb-6">
+          {/* <div className="flex bg-gray-100 rounded-lg p-6 shadow-inner mb-6">
             <img
               src={userData.profileImage}
               alt={userData.firstName}
@@ -66,7 +66,22 @@ function AlumniProfileInfo() {
               <p className="text-gray-600">{userData.college}</p>
               <p className="text-gray-600">{userData.headline}</p>
             </div>
+          </div> */}
+          <div className="flex flex-col md:flex-row bg-gray-100 rounded-lg p-6 shadow-inner mb-6">
+            <img
+              src={userData.profileImage}
+              alt={userData.firstName}
+              className="w-24 h-24 rounded-lg object-cover mx-auto md:mx-0"
+            />
+            <div className="mt-4 md:mt-0 md:ml-6 text-center md:text-left">
+              <h2 className="text-2xl font-bold">
+                {userData.firstName} {userData.lastName}
+              </h2>
+              <p className="text-gray-600">{userData.college}</p>
+              <p className="text-gray-600">{userData.headline}</p>
+            </div>
           </div>
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="bg-gray-100 p-6 rounded-lg shadow-inner ">
               <h3 className="text-xl font-semibold mb-4">

@@ -3,7 +3,7 @@ import { useState } from "react";
 
 function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
+  const userData = JSON.parse(localStorage.getItem("Users"));
   return (
     <div className="bg-gray-900">
       <div className="px-4 py-6 mx-auto lg:py-8 sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
@@ -58,7 +58,7 @@ function Navbar() {
           <ul className="flex items-center hidden space-x-8 lg:flex">
             <li>
               <a
-                href="/profile/:username/:id"
+                href={`/profile/Ankur/${userData._id}`}
                 aria-label="Profile"
                 title="Profile"
                 className="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400"
