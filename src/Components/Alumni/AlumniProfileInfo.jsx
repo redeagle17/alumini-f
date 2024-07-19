@@ -78,11 +78,11 @@ function AlumniProfileInfo() {
                 <div className="space-y-2">
                   <p className="flex justify-between">
                     <span className="font-semibold">Gender:</span>{" "}
-                    {userData.gender || "Not Available"}
+                    {userData.gender}
                   </p>
                   <p className="flex justify-between">
                     <span className="font-semibold">Mobile:</span>{" "}
-                    {userData.phone || "Not Available"}
+                    {userData.phone}
                   </p>
                   <p className="flex justify-between">
                     <span className="font-semibold">Email:</span>{" "}
@@ -90,11 +90,11 @@ function AlumniProfileInfo() {
                   </p>
                   <p className="flex justify-between">
                     <span className="font-semibold">Department:</span>
-                    {userData.department || "Not Available"}
+                    {userData.department}
                   </p>
                   <p className="flex justify-between">
                     <span className="font-semibold">Location:</span>
-                    {userData.location || "Not Available"}
+                    {userData.location}
                   </p>
                   <div className="flex space-x-2">
                     <span className="font-semibold">Social:</span>

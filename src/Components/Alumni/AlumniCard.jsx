@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 
 function AlumniCard({
@@ -29,7 +29,7 @@ function AlumniCard({
             />
           </div>
         </div>
-        <div className="mt-16 flex flex-col items-center">
+        <div className="mt-16 flex flex-col items-center text-center flex-grow">
           <h4 className="text-bluePrimary text-lg md:text-xl lg:text-2xl font-bold">
             {firstName} {lastName}
           </h4>
@@ -64,9 +64,9 @@ function AlumniCard({
               viewBox="0 0 24 24"
               fill="none"
               stroke="#000000"
-              stroke-width="3.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeWidth="3.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             >
               <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
               <circle cx="12" cy="7" r="4"></circle>

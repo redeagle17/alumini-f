@@ -17,7 +17,8 @@ function AlumniContent() {
   const [dbFilteredData, setdbFilteredData] = useState(
     dbData.slice(firstIndex, lastIndex)
   );
-
+  const userData = JSON.parse(localStorage.getItem("Users"));
+  console.log(userData);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -35,7 +36,11 @@ function AlumniContent() {
   }, []);
 
   useEffect(() => {
-    setdbFilteredData(dbData.slice(firstIndex, lastIndex));
+    setdbFilteredData(
+      dbData
+        .slice(firstIndex, lastIndex)
+        .filter((item) => item.user_id !== userData._id)
+    );
     setLoading(false);
   }, [dbData, currentPage]);
 
@@ -54,7 +59,8 @@ function AlumniContent() {
       setdbFilteredData(dbData.slice(firstIndex, lastIndex));
     } else {
       const filteredData = dbData.filter(
-        (item) => item.department === department
+        (item) =>
+          item.department === department && item.user_id !== userData._id
       );
       setdbFilteredData(filteredData);
       setCurrentPage(1);
@@ -65,7 +71,12 @@ function AlumniContent() {
     const filteredData = dbData.filter((item) =>
       item.firstName.toLowerCase().includes(search.toLowerCase())
     );
-    setdbFilteredData(filteredData);
+    setdbFilteredData(
+      filteredData.filter(
+        (item) =>
+          item.department === department && item.user_id !== userData._id
+      )
+    );
     setCurrentPage(1);
   };
 

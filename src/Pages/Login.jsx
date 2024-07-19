@@ -1,13 +1,17 @@
 import React from "react";
 import axios from "axios";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+import AuthContext from "../context/AuthContext";
+import { Option } from "@material-tailwind/react";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+  const { setDispatch } = useContext(AuthContext);
 
-  // handleSubmit function is incomplete
   const handleSubmit = async (e) => {
     e.preventDefault();
     const userData = {
@@ -20,11 +24,17 @@ function Login() {
         "http://localhost:8000/api/v1/users/login",
         userData
       );
-      toast.success(res.data.message);
-      localStorage.setItem("Users", JSON.stringify(res.data.data));
+      const payload = res.data.data;
+      setDispatch({ type: "LOGIN", payload: payload });
+      toast.success(res.data.message, {
+        autoClose: 1000, 
+      });
+      setTimeout(() => {
+        navigate("/home");
+      }, 2000);
     } catch (error) {
-      const res = error.response;
-      toast.error(res.data.message);
+      console.log(error);
+      toast.error(error.response.data.message);
     }
   };
 

@@ -1,14 +1,15 @@
-import { useState, useEffect, Fragment, useContext } from "react";
+import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
+import AuthContext from "../context/AuthContext";
 
 function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  // const navigate = useNavigate();
-  // const { dispatch } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const { setDispatch } = useContext(AuthContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -24,7 +25,13 @@ function Signup() {
         "http://localhost:8000/api/v1/users/register",
         userData
       );
-      toast.success(res.data.message);
+      setDispatch({ type: "LOGIN", payload: res.data.data });
+      toast.success(res.data.message, {
+        autoClose: 1000,
+      });
+      setTimeout(() => {
+        navigate("/personal_info");
+      }, 2000);
     } catch (error) {
       const res = error.response;
       toast.error(res.data.message);

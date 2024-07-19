@@ -1,7 +1,8 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
+import AuthContext from "../context/AuthContext";
 
 const department_options = [
   { name: "AIML" },
@@ -37,7 +38,8 @@ function AlumniPersonalInfo() {
       currentWork: false,
     },
   ]);
-
+  const { setDispatch } = useContext(AuthContext);
+  const navigate = useNavigate();
   const handleAddWorkExperience = () => {
     setWorkExperiences([...workExperiences, { position: "", company: "" }]);
   };
@@ -61,6 +63,7 @@ function AlumniPersonalInfo() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     const userData = JSON.parse(localStorage.getItem("Users"));
     const formData = new FormData();
     formData.append("user_id", userData._id);
@@ -111,7 +114,12 @@ function AlumniPersonalInfo() {
           },
         }
       );
-      toast.success(res.data.message);
+      toast.success(res.data.message, {
+        autoClose: 3000,
+      });
+      setTimeout(() => {
+        navigate("/home");
+      }, 4000);
     } catch (error) {
       const res = error.response;
       toast.error(res.data.message);
