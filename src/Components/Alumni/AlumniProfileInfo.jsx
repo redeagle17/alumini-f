@@ -2,8 +2,10 @@ import React from "react";
 import Navbar from "../Navbar";
 import Footer from "../Footer";
 import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 
-function AlumniInfo() {
+function AlumniProfileInfo() {
+  const { firstName, user_id } = useParams();
   const [repos, setRepos] = useState([]);
   useEffect(() => {
     const fetchRepos = async () => {
@@ -44,38 +46,39 @@ function AlumniInfo() {
               <h3 className="text-xl font-semibold mb-4">
                 Personal Information
               </h3>
-              <div className="mb-4">
-                <h4 className="text-lg font-semibold">ACCOUNT</h4>
-                <div className="mt-2 space-y-2">
-                  <div className="flex items-center">
-                    <input type="checkbox" className="mr-3" checked />
-                    <span>Email me when someone follows me</span>
-                  </div>
-                  <div className="flex items-center">
-                    <input type="checkbox" className="mr-3" />
-                    <span>Email me when someone answers on my post</span>
-                  </div>
-                  <div className="flex items-center">
-                    <input type="checkbox" className="mr-3" checked />
-                    <span>Email me when someone mentions me</span>
-                  </div>
-                </div>
-              </div>
-              <div>
-                <h4 className="text-lg font-semibold">APPLICATION</h4>
-                <div className="mt-2 space-y-2">
-                  <div className="flex items-center">
-                    <input type="checkbox" className="mr-3" checked />
-                    <span>New launches and projects</span>
-                  </div>
-                  <div className="flex items-center">
-                    <input type="checkbox" className="mr-3" checked />
-                    <span>Monthly product updates</span>
-                  </div>
-                  <div className="flex items-center">
-                    <input type="checkbox" className="mr-3" />
-                    <span>Subscribe to newsletter</span>
-                  </div>
+              <p className="text-gray-700 mb-4">
+                Hi, I'm Alec Thompson, Decisions: If you can't decide, the
+                answer is no. If two equally difficult paths, choose the one
+                more painful in the short term (pain avoidance is creating an
+                illusion of equality).
+              </p>
+              <div className="space-y-2">
+                <p className="flex justify-between">
+                  <span className="font-semibold">Full Name:</span> Alec M.
+                  Thompson
+                </p>
+                <p className="flex justify-between">
+                  <span className="font-semibold">Mobile:</span> (44) 123 1234
+                  123
+                </p>
+                <p className="flex justify-between">
+                  <span className="font-semibold">Email:</span>{" "}
+                  alec.thompson@mail.com
+                </p>
+                <p className="flex justify-between">
+                  <span className="font-semibold">Location:</span> USA
+                </p>
+                <div className="flex space-x-2">
+                  <span className="font-semibold">Social:</span>
+                  <a href="#" className="text-blue-500">
+                    Facebook
+                  </a>
+                  <a href="#" className="text-blue-400">
+                    Twitter
+                  </a>
+                  <a href="#" className="text-pink-500">
+                    Instagram
+                  </a>
                 </div>
               </div>
             </div>
@@ -150,4 +153,4 @@ function AlumniInfo() {
   );
 }
 
-export default AlumniInfo;
+export default AlumniProfileInfo;

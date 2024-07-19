@@ -6,24 +6,22 @@ function AlumniCard({
   firstName,
   lastName,
   department,
-  gender,
   headline,
   linkedin,
   twitter,
   github,
   profileImage,
 }) {
-  
   return (
     <>
-      <div className="dark:!bg-navy-800 shadow-shadow-500 shadow-3xl rounded-lg relative mx-auto flex h-full w-full max-w-[550px] flex-col items-center bg-gray-100 bg-cover bg-clip-border p-[16px] dark:text-white dark:shadow-none">
+      <div className="dark:!bg-navy-800 shadow-shadow-500 shadow-3xl rounded-lg relative mx-auto flex h-full w-full max-w-[90%] sm:max-w-[550px] flex-col items-center bg-gray-100 bg-cover bg-clip-border p-4 md:p-6 lg:p-8 dark:text-white dark:shadow-none">
         <div
           className="relative mt-1 flex h-32 w-full justify-center rounded-xl bg-cover"
           style={{
             backgroundImage: 'url("https://i.ibb.co/xmP2pS6/Profile.png")',
           }}
         >
-          <div className="absolute -bottom-12 flex h-[98px] w-[100px] items-center justify-center rounded-full border-[4px] border-white">
+          <div className="absolute -bottom-12 flex h-[98px] w-[98px] items-center justify-center rounded-full border-[4px] border-white">
             <img
               className="h-full w-full rounded-full"
               src={profileImage}
@@ -32,13 +30,17 @@ function AlumniCard({
           </div>
         </div>
         <div className="mt-16 flex flex-col items-center">
-          <h4 className="text-bluePrimary text-xl font-bold">{firstName} {lastName}</h4>
-          <p className="text-lightSecondary text-base font-bold">
+          <h4 className="text-bluePrimary text-lg md:text-xl lg:text-2xl font-bold">
+            {firstName} {lastName}
+          </h4>
+          <p className="text-lightSecondary text-sm md:text-base font-bold">
             {department}
           </p>
-          <p className="text-lightSecondary text-base font-normal">{headline}</p>
+          <p className="text-lightSecondary text-sm md:text-base font-normal text-center">
+            {headline}
+          </p>
         </div>
-        <div className="mt-6 mb-3 flex gap-4 md:!gap-14">
+        <div className="mt-6 mb-3 flex gap-4 md:gap-6 lg:gap-8 flex-wrap justify-center">
           <a href={twitter} className="text-blue-400">
             <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
               <path d="M24 4.557a9.93 9.93 0 0 1-2.825.775 4.932 4.932 0 0 0 2.163-2.724 9.866 9.866 0 0 1-3.127 1.195A4.924 4.924 0 0 0 16.846 3a4.92 4.92 0 0 0-4.92 4.92c0 .386.044.762.126 1.124C7.691 8.794 4.066 6.87 1.64 3.85a4.822 4.822 0 0 0-.664 2.475 4.92 4.92 0 0 0 2.188 4.1 4.933 4.933 0 0 1-2.23-.616v.062a4.922 4.922 0 0 0 3.946 4.83 4.952 4.952 0 0 1-2.224.084 4.928 4.928 0 0 0 4.6 3.419 9.867 9.867 0 0 1-6.102 2.104c-.395 0-.788-.023-1.176-.068A13.94 13.94 0 0 0 7.548 21c9.058 0 14.01-7.507 14.01-14.01 0-.213-.005-.426-.014-.637A9.935 9.935 0 0 0 24 4.557z" />
@@ -55,19 +57,20 @@ function AlumniCard({
             </svg>
           </a>
           <Link to={`/profile/${firstName}/${user_id}`}>
-            {gender === "Male" ? (
-              <img
-                src="https://img.icons8.com/?size=100&id=23265&format=png&color=000000"
-                className="w-7 h-7"
-                alt="Male"
-              />
-            ) : (
-              <img
-                src="https://img.icons8.com/?size=100&id=60390&format=png&color=000000"
-                className="w-7 h-7"
-                alt="Female"
-              />
-            )}
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="25"
+              height="25"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#000000"
+              stroke-width="3.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
           </Link>
         </div>
       </div>

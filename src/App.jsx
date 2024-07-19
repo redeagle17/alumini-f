@@ -3,7 +3,7 @@ import Signup from "./Pages/Signup";
 import Dashboard from "./Pages/Dashboard";
 import AluminiPage from "./Pages/AluminiPage";
 import { Navigate, Route, Routes } from "react-router-dom";
-import AlumniInfo from "./Components/Alumni/AlumniInfo";
+import AlumniProfileInfo from "./Components/Alumni/AlumniProfileInfo";
 import AlumniPersonalInfo from "./Pages/AlumniPersonalInfo";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -17,7 +17,7 @@ function App() {
         <Route exact path="/home" element={<Dashboard />} />
         <Route exact path="/alumni" element={<AluminiPage />} />
         <Route exact path="/personal_info" element={<AlumniPersonalInfo />} />
-        <Route exact path="/profile/:username/:id" element={<AlumniInfo />} />
+        <Route exact path="/profile/:firstName/:user_id" element={<AlumniProfileInfo />} />
       </Routes>
       <ToastContainer />
     </>
