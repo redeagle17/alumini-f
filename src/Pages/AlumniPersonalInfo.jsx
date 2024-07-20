@@ -121,7 +121,9 @@ function AlumniPersonalInfo() {
         navigate("/home");
       }, 4000);
     } catch (error) {
+      console.log(error)
       const res = error.response;
+      console.log(res)
       toast.error(res.data.message);
     }
   };
