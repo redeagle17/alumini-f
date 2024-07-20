@@ -77,7 +77,7 @@ function AlumniPersonalInfo() {
     formData.append("college", college);
     formData.append("department", department);
     formData.append("about", about);
-    formData.append("profileImage", image[0]);
+    formData.append("profileImage", image);
 
     workExperiences.forEach((workExperience, index) => {
       formData.append(
