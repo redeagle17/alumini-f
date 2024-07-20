@@ -24,14 +24,16 @@ function Login() {
         "https://alumniconnect-d4socl65y-ankur-singhs-projects-b0407e94.vercel.app/api/v1/users/login",
         userData
       );
-      const payload = res.data.data;
-      setDispatch({ type: "LOGIN", payload: payload });
-      toast.success(res.data.message, {
-        autoClose: 1000,
-      });
-      setTimeout(() => {
-        navigate("/home");
-      }, 2000);
+      if (res.data) {
+        const payload = res.data.data;
+        setDispatch({ type: "LOGIN", payload: payload });
+        toast.success(res.data.message, {
+          autoClose: 1000,
+        });
+        setTimeout(() => {
+          navigate("/home");
+        }, 2000);
+      }
     } catch (error) {
       console.log(error);
       toast.error(error.response.data.message);
