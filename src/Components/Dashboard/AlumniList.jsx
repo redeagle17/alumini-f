@@ -12,7 +12,7 @@ function AlumniList() {
     const fetchData = async () => {
       try {
         const res = await axios.get(
-          "https://alumniconnect-d4socl65y-ankur-singhs-projects-b0407e94.vercel.app/api/v1/users_data/all_users_profile"
+          "http://localhost:8000/api/v1/users_data/all_users_profile"
         );
         setAlumni(res.data.data.slice(0, 4));
       } catch (error) {

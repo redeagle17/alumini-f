@@ -20,7 +20,7 @@ function Login() {
 
     try {
       const res = await axios.post(
-        "https://alumniconnect-d4socl65y-ankur-singhs-projects-b0407e94.vercel.app/api/v1/users/login",
+        "http://localhost:8000/api/v1/users/login",
         userData
       );
       if (res.data) {

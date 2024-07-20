@@ -24,7 +24,7 @@ function AlumniContent() {
       try {
         setLoading(true);
         const res = await axios.get(
-          "https://alumniconnect-d4socl65y-ankur-singhs-projects-b0407e94.vercel.app/api/v1/users_data/all_users_profile"
+          "http://localhost:8000/api/v1/users_data/all_users_profile"
         );
         setdbData(res.data.data);
       } catch (error) {
