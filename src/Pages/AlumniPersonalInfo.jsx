@@ -28,7 +28,7 @@ function AlumniPersonalInfo() {
   const [college, setCollege] = useState("");
   const [department, setDepartment] = useState("");
   const [about, setAbout] = useState("");
-  const [image, setImage] = useState([]);
+  const [image, setImage] = useState("");
   const [workExperiences, setWorkExperiences] = useState([
     {
       position: "",
@@ -40,6 +40,22 @@ function AlumniPersonalInfo() {
   ]);
   const { currentUser } = useContext(AuthContext);
   const navigate = useNavigate();
+
+  const handleImage = async (e) => {
+    const file = e.target.files[0];
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("upload_preset", "ro2uz2lu");
+    try {
+      const res = await axios.post(
+        "https://api.cloudinary.com/v1_1/dem31tnb3/image/upload",
+        formData
+      );
+      console.log(res);
+    } catch (error) {
+      toast.error(error);
+    }
+  };
   const handleAddWorkExperience = () => {
     setWorkExperiences([...workExperiences, { position: "", company: "" }]);
   };
@@ -236,7 +252,7 @@ function AlumniPersonalInfo() {
                   name="photo"
                   id="photo"
                   className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-zinc-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
-                  onChange={(e) => setImage(e.target.files[0])}
+                  onChange={ handleImage }
                 />
               </div>
               <div className="col-span-1 md:col-span-2">
