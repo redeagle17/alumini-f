@@ -114,11 +114,6 @@ function AlumniProfileInfo() {
             <div className="bg-gray-100 p-6 rounded-lg shadow-inner">
               <h3 className="text-xl font-semibold mb-4">Work Experience</h3>
               {workExperience.map((workData, index) => {
-                const formatDate = (isoString) => {
-                  const date = new Date(isoString);
-                  return new Intl.DateTimeFormat("en-CA").format(date);
-                };
-
                 return (
                   <div
                     key={index}
@@ -131,10 +126,8 @@ function AlumniProfileInfo() {
                           {workData.company}
                         </p>
                         <p className="text-gray-500 text-sm">
-                          {formatDate(workData.startDate)} to{" "}
-                          {workData.endDate
-                            ? formatDate(workData.endDate)
-                            : "Present"}
+                          {workData.startDate} to{" "}
+                          {workData.endDate ? workData.endDate : "Present"}
                         </p>
                         {index < workExperience.length - 1 && (
                           <hr className="w-72 mt-4 border-t-1 border-gray-300" />

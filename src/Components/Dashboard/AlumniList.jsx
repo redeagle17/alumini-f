@@ -4,56 +4,6 @@ import { FiChevronRight, FiChevronLeft } from "react-icons/fi";
 import axios from "axios";
 import { toast } from "react-toastify";
 
-// Store it in database
-// const data = [
-//   {
-//     id: 1,
-//     name: "Maaz Karim",
-//     domain: "Deep Learning",
-//     tagline: "Reinforcing deep learning one epoch at a time.",
-//     image_src:
-//       "https://res.cloudinary.com/diqqf3eq2/image/upload/v1595959121/person-1_aufeoq.jpg",
-//     twitter: "https://twitter.com/_MaazKarim_",
-//     github: "https://github.com/Cyber-Machine",
-//     linkedin: "https://github.com/Cyber-Machine",
-//   },
-//   {
-//     id: 2,
-//     name: "Aditya Gupta",
-//     domain: "Android Development",
-//     tagline: "Building Android Application by fixing dependencies.",
-//     image_src:
-//       "https://pbs.twimg.com/profile_images/1537609745741139968/MV2aJner_400x400.jpg",
-//     twitter: "https://twitter.com/Aditya_Gupta_99",
-//     github: "https://github.com/Aditya-gupta99",
-//     linkedin: "https://github.com/Cyber-Machine",
-//   },
-//   {
-//     id: 3,
-//     name: "Ankur Singh",
-//     domain: "Backend Development",
-//     tagline:
-//       "Bulding Backend application by using Node.js framework and applying it fully in real world.",
-//     image_src:
-//       "https://res.cloudinary.com/diqqf3eq2/image/upload/v1586883417/person-3_ipa0mj.jpg",
-//     twitter: "https://twitter.com/Aditya_Gupta_99",
-//     github: "https://github.com/Aditya-gupta99",
-//     linkedin: "https://github.com/Cyber-Machine",
-//   },
-//   {
-//     id: 4,
-//     name: "Anukalp Jain",
-//     domain: "Frontend Development",
-//     tagline:
-//       "Gastropub sustainable tousled prism occupy. Viral XOXO roof party brunch actually, chambray listicle microdosing put a bird on it paleo subway tile squid umami.",
-//     image_src:
-//       "https://res.cloudinary.com/diqqf3eq2/image/upload/v1595959131/person-2_ipcjws.jpg",
-//     twitter: "https://twitter.com/Aditya_Gupta_99",
-//     github: "https://github.com/Aditya-gupta99",
-//     linkedin: "https://github.com/Cyber-Machine",
-//   },
-// ];
-
 function AlumniList() {
   const [alumni, setAlumni] = useState([]);
   const [index, setIndex] = useState(0);
@@ -64,7 +14,7 @@ function AlumniList() {
         const res = await axios.get(
           "http://localhost:8000/api/v1/users_data/all_users_profile"
         );
-        setAlumni(res.data.data);
+        setAlumni(res.data.data.slice(0,4));
       } catch (error) {
         console.error("Error in fetching data:", error);
         toast.error("Error in fetching data");
@@ -72,16 +22,16 @@ function AlumniList() {
     };
     fetchData();
   }, []);
-  
+
   useEffect(() => {
-    const lastIndex =  alumni.length - 1;
+    const lastIndex = alumni.length - 1;
     if (index < 0) {
       setIndex(lastIndex);
     }
     if (index > lastIndex) {
       setIndex(0);
     }
-  }, [index,  alumni]);
+  }, [index, alumni]);
 
   useEffect(() => {
     let slider = setInterval(() => {
@@ -121,14 +71,20 @@ function AlumniList() {
             }
             if (
               personIndex === index - 1 ||
-              (index === 0 && personIndex ===  alumni.length - 1)
+              (index === 0 && personIndex === alumni.length - 1)
             ) {
               position = "lastSlide";
             }
             return (
               <article key={id} className={position}>
-                <img src={profileImage} alt={firstName} className="person-img" />
-                <h4>{firstName}{" "}{lastName}</h4>
+                <img
+                  src={profileImage}
+                  alt={firstName}
+                  className="person-img"
+                />
+                <h4>
+                  {firstName} {lastName}
+                </h4>
                 <p className="title">{department}</p>
                 <p className="text">{college}</p>
                 <p className="flex justify-center space-x-3 mt-2">

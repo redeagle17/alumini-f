@@ -9,6 +9,7 @@ function AlumniContent() {
   const [dbData, setdbData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState(false);
+  const [search, setSearchInput] = useState("");
   const itemsPerPage = 8;
   const totalPages = Math.ceil(dbData.length / itemsPerPage);
   const lastIndex = currentPage * itemsPerPage;
@@ -18,7 +19,6 @@ function AlumniContent() {
     dbData.slice(firstIndex, lastIndex)
   );
   const userData = JSON.parse(localStorage.getItem("Users"));
-  console.log(userData);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -67,15 +67,13 @@ function AlumniContent() {
     }
   };
 
-  const handleSearch = (search) => {
+  const handleSearch = () => {
     const filteredData = dbData.filter((item) =>
       item.firstName.toLowerCase().includes(search.toLowerCase())
     );
+    console.log(filteredData);
     setdbFilteredData(
-      filteredData.filter(
-        (item) =>
-          item.department === department && item.user_id !== userData._id
-      )
+      filteredData.filter((item) => item.user_id !== userData._id)
     );
     setCurrentPage(1);
   };
@@ -111,12 +109,13 @@ function AlumniContent() {
               id="default-search"
               className="block p-4 pl-10 w-full h-12 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300"
               placeholder="Search by Name..."
+              onChange={(e) => setSearchInput(e.target.value)}
               required
-              onChange={(e) => handleSearch(e.target.value)}
             />
             <button
               type="button"
               className="text-white absolute right-2.5 bottom-1.5 bg-blue-700 hover:text-gray-900 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded text-sm px-4 py-2"
+              onClick={handleSearch}
             >
               Search
             </button>
