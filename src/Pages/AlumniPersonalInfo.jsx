@@ -28,7 +28,7 @@ function AlumniPersonalInfo() {
   const [college, setCollege] = useState("");
   const [department, setDepartment] = useState("");
   const [about, setAbout] = useState("");
-  const [image, setImage] = useState([]);
+  const [image, setImage] = useState(null);
   const [workExperiences, setWorkExperiences] = useState([
     {
       position: "",
@@ -65,6 +65,7 @@ function AlumniPersonalInfo() {
     e.preventDefault();
 
     const userData = JSON.parse(localStorage.getItem("Users"));
+    console.log("the first name", firstName);
     const formData = new FormData();
     formData.append("user_id", userData._id);
     formData.append("firstName", firstName);
@@ -103,7 +104,7 @@ function AlumniPersonalInfo() {
         workExperience.currentWork
       );
     });
-    console.log("The formdata",formData);
+    console.log("The formData",formData);
     try {
       const res = await axios.post(
         "https://alumni-b.vercel.app/api/v1/users_data/profile",
