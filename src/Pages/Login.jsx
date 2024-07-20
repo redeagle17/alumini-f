@@ -21,13 +21,13 @@ function Login() {
 
     try {
       const res = await axios.post(
-        "http://localhost:8000/api/v1/users/login",
+        "https://alumniconnect-d4socl65y-ankur-singhs-projects-b0407e94.vercel.app/api/v1/users/login",
         userData
       );
       const payload = res.data.data;
       setDispatch({ type: "LOGIN", payload: payload });
       toast.success(res.data.message, {
-        autoClose: 1000, 
+        autoClose: 1000,
       });
       setTimeout(() => {
         navigate("/home");

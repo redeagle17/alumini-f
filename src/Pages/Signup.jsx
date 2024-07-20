@@ -22,7 +22,7 @@ function Signup() {
 
     try {
       const res = await axios.post(
-        "http://localhost:8000/api/v1/users/register",
+        "https://alumniconnect-d4socl65y-ankur-singhs-projects-b0407e94.vercel.app/api/v1/users/register",
         userData
       );
       setDispatch({ type: "LOGIN", payload: res.data.data });

@@ -106,7 +106,7 @@ function AlumniPersonalInfo() {
 
     try {
       const res = await axios.post(
-        "http://localhost:8000/api/v1/users_data/profile",
+        "https://alumniconnect-d4socl65y-ankur-singhs-projects-b0407e94.vercel.app/api/v1/users_data/profile",
         formData,
         {
           headers: {
