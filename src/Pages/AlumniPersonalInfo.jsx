@@ -38,7 +38,7 @@ function AlumniPersonalInfo() {
       currentWork: false,
     },
   ]);
-  const { setDispatch } = useContext(AuthContext);
+  const { currentUser } = useContext(AuthContext);
   const navigate = useNavigate();
   const handleAddWorkExperience = () => {
     setWorkExperiences([...workExperiences, { position: "", company: "" }]);
@@ -63,11 +63,8 @@ function AlumniPersonalInfo() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const userData = JSON.parse(localStorage.getItem("Users"));
-    console.log("the first name", firstName);
     const formData = new FormData();
-    formData.append("user_id", userData._id);
+    formData.append("user_id", currentUser._id);
     formData.append("firstName", firstName);
     formData.append("lastName", lastName);
     formData.append("location", location);
