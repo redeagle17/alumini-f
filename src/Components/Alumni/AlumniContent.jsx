@@ -24,7 +24,7 @@ function AlumniContent() {
       try {
         setLoading(true);
         const res = await axios.get(
-          "http://localhost:8000/api/v1/users_data/all_users_profile"
+          "https://alumni-b.vercel.app/api/v1/users_data/all_users_profile"
         );
         setdbData(res.data.data);
       } catch (error) {

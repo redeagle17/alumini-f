@@ -16,7 +16,7 @@ function AlumniProfileInfo() {
     const getSingleUserData = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:8000/api/v1/users_data/${user_id}/single_user_profile`
+          `https://alumni-b.vercel.app/api/v1/users_data/${user_id}/single_user_profile`
         );
         setUserData(res.data.data);
         setWorkExperience(res.data.data.workExperiences);
