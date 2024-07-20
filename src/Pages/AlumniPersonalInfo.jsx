@@ -52,6 +52,7 @@ function AlumniPersonalInfo() {
         formData
       );
       setImage(res.data.secure_url);
+      console.log(res.data.secure_url);
     } catch (error) {
       toast.error(error);
     }
