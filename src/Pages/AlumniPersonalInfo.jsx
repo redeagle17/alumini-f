@@ -52,7 +52,6 @@ function AlumniPersonalInfo() {
         formData
       );
       setImage(res.data.secure_url);
-      console.log(res.data.secure_url);
     } catch (error) {
       toast.error(error);
     }
@@ -97,7 +96,6 @@ function AlumniPersonalInfo() {
       profileImage: image,
       workExperiences: workExperiences,
     };
-    console.log(profileInfo);
     try {
       const res = await axios.post(
         "https://alumni-b.vercel.app/api/v1/users_data/profile",
