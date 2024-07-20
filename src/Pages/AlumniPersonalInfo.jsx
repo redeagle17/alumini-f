@@ -51,7 +51,7 @@ function AlumniPersonalInfo() {
         "https://api.cloudinary.com/v1_1/dem31tnb3/image/upload",
         formData
       );
-      console.log(res);
+      setImage(res.data.secure_url);
     } catch (error) {
       toast.error(error);
     }
@@ -79,56 +79,28 @@ function AlumniPersonalInfo() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const formData = new FormData();
-    formData.append("user_id", currentUser._id);
-    formData.append("firstName", firstName);
-    formData.append("lastName", lastName);
-    formData.append("location", location);
-    formData.append("gender", gender);
-    formData.append("headline", headline);
-    formData.append("phone", phone);
-    formData.append("linkedin", linkedin);
-    formData.append("github", github);
-    formData.append("twitter", twitter);
-    formData.append("college", college);
-    formData.append("department", department);
-    formData.append("about", about);
-    formData.append("profileImage", image);
-
-    workExperiences.forEach((workExperience, index) => {
-      formData.append(
-        `workExperiences[${index}][position]`,
-        workExperience.position
-      );
-      formData.append(
-        `workExperiences[${index}][company]`,
-        workExperience.company
-      );
-      formData.append(
-        `workExperiences[${index}][startDate]`,
-        workExperience.startDate
-      );
-      formData.append(
-        `workExperiences[${index}][endDate]`,
-        workExperience.endDate
-      );
-      formData.append(
-        `workExperiences[${index}][currentWork]`,
-        workExperience.currentWork
-      );
-    });
-    for (let [key, value] of formData.entries()) {
-      console.log(`${key}: ${value}`);
-    }
+    const profileInfo = {
+      user_id: currentUser._id,
+      firstName: firstName,
+      lastName: lastName,
+      location: location,
+      gender: gender,
+      headline: headline,
+      phone: phone,
+      linkedin: linkedin,
+      github: github,
+      twitter: twitter,
+      college: college,
+      department: department,
+      about: about,
+      profileImage: image,
+      workExperiences: workExperiences,
+    };
+    console.log(profileInfo);
     try {
       const res = await axios.post(
         "https://alumni-b.vercel.app/api/v1/users_data/profile",
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
+        profileInfo
       );
       toast.success(res.data.message, {
         autoClose: 3000,
@@ -252,7 +224,7 @@ function AlumniPersonalInfo() {
                   name="photo"
                   id="photo"
                   className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-zinc-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
-                  onChange={ handleImage }
+                  onChange={handleImage}
                 />
               </div>
               <div className="col-span-1 md:col-span-2">
