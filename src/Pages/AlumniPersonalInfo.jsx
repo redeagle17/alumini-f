@@ -103,7 +103,7 @@ function AlumniPersonalInfo() {
         workExperience.currentWork
       );
     });
-
+    console.log("The formdata",formData);
     try {
       const res = await axios.post(
         "https://alumni-b.vercel.app/api/v1/users_data/profile",
