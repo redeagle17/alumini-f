@@ -11,7 +11,7 @@ function Login() {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const { setDispatch } = useContext(AuthContext);
-
+  axios.defaults.withCredentials = true;
   const handleSubmit = async (e) => {
     e.preventDefault();
     const userData = {
