@@ -45,10 +45,10 @@ function AlumniPersonalInfo() {
     const file = e.target.files[0];
     const formData = new FormData();
     formData.append("file", file);
-    formData.append("upload_preset", "preset_name");
+    formData.append("upload_preset", process.env.CLOUDINARY_PRESET_NAME);
     try {
       const res = await axios.post(
-        "https://api.cloudinary.com/v1_1/cloud_name/image/upload",
+        `https://api.cloudinary.com/v1_1/${process.env.CLOUDINARY_CLOUD_NAME}/image/upload`,
         formData
       );
       setImage(res.data.secure_url);
